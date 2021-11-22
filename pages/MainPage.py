@@ -16,5 +16,4 @@ class MainPage(BasePage):
 
     def check_is_displayed_img(self):
         element = self.base_element.find_element_(By.XPATH, ELEMENT_IMG)
-        check_is_displayed = self.base_element.check_is_displayed(element)
-        return check_is_displayed
+        return self.base_element.check_is_displayed(element)

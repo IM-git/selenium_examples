@@ -6,7 +6,7 @@ class BaseElements:
     def find_element_(self, locator, element):
         return self.browser.find_element(locator, element)
 
-    def click(self, element):
+    def click_(self, element):
         return element.click()
 
     def get_to_attribute(self, element, attribute):

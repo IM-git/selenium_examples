@@ -9,6 +9,10 @@ TIME = 10
 
 class BasePage:
 
+    @staticmethod
+    def check_use_of_the_base_page():
+        return print('BasePage is used!!')
+
     def __init__(self, browser, config):
         self.config = config
         self.browser = browser
@@ -27,7 +31,12 @@ class BasePage:
         return self.browser.back()
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.browser, TIME).until(EC.element_to_be_clickable(element))
+        return WebDriverWait(self.browser, TIME).until(
+            EC.element_to_be_clickable(element))
 
     def wait_presence_of_element_located(self, element):
-        return WebDriverWait(self.browser, TIME).until(EC.presence_of_element_located(element))
+        return WebDriverWait(self.browser, TIME).until(
+            EC.presence_of_element_located(element))
+
+    def click_element(self, locator, element):
+        return self.base_element.click_(self.base_element.find_element_(locator, element))
