@@ -34,8 +34,13 @@ class BasePage:
         return WebDriverWait(self.browser, TIME).until(
             EC.presence_of_element_located(element))
 
+    def get_text(self, locator, element):
+        return self.base_element.get_text_(
+            self.base_element.find_element_(locator, element))
+
     def click_element(self, locator, element):
-        return self.base_element.click_(self.base_element.find_element_(locator, element))
+        return self.base_element.click_(
+            self.base_element.find_element_(locator, element))
 
     # def click_element(self, locator, element):
     #     return BaseElements(self.browser).click_(BaseElements(self.browser).find_element_(locator, element))

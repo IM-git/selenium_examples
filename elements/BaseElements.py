@@ -12,7 +12,7 @@ class BaseElements:
     def get_to_attribute(self, element, attribute):
         return element.get_attribute(attribute)
 
-    def get_text(self, element):
+    def get_text_(self, element):
         return element.text
 
     def check_is_displayed(self, element):
