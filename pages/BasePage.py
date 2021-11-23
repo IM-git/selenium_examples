@@ -9,10 +9,6 @@ TIME = 10
 
 class BasePage:
 
-    @staticmethod
-    def check_use_of_the_base_page():
-        return print('BasePage is used!!')
-
     def __init__(self, browser, config):
         self.config = config
         self.browser = browser
@@ -40,3 +36,10 @@ class BasePage:
 
     def click_element(self, locator, element):
         return self.base_element.click_(self.base_element.find_element_(locator, element))
+
+    # def click_element(self, locator, element):
+    #     return BaseElements(self.browser).click_(BaseElements(self.browser).find_element_(locator, element))
+
+    # @staticmethod
+    # def findfind(browser, locator, element):    # Вариант что бы не оправлять в BaseElement browser а делать все здесь
+    #     return browser.BaseElements().find_element_(locator, element)
