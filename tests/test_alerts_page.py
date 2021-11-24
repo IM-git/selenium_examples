@@ -36,8 +36,27 @@ def test_alerts_page(browser, config):
     click_alert_button_witch_confirm_box = alerts_page. \
         click_alert_button_witch_confirm_box()
     get_alert_text_witch_confirm_box_cancel = alerts_page.get_alert_text()
-    alert_click_ok = alerts_page.alert_click_cancel()
+    alert_click_cancel = alerts_page.alert_click_cancel()
     get_confirm_result_text_cancel = alerts_page.get_confirm_result_text()
+
+# PROMPT BOX EMPTY 'Ok'
+    click_alert_button_witch_prompt_box = alerts_page.click_alert_button_witch_prompt_box()
+    get_alert_text_witch_prompt_box_empty_ok = alerts_page.get_alert_text()
+    alert_click_ok = alerts_page.alert_click_ok()
+    check_is_displayed_prompt_text_ok = alerts_page.check_is_displayed_prompt_text()
+
+# PROMPT BOX 'Cancel'
+    click_alert_button_witch_prompt_box = alerts_page.click_alert_button_witch_prompt_box()
+    get_alert_text_witch_prompt_box_cancel = alerts_page.get_alert_text()
+    alert_click_ok = alerts_page.alert_click_ok()
+    check_is_displayed_prompt_text_cancel = alerts_page.check_is_displayed_prompt_text()
+
+# PROMPT BOX 'Ok' WITH TEXT
+    click_alert_button_witch_prompt_box = alerts_page.click_alert_button_witch_prompt_box()
+    get_alert_text_witch_prompt_box_ok = alerts_page.get_alert_text()
+    enter_text_in_alert_prompt = alerts_page.enter_text_in_alert_prompt()
+    alert_click_ok = alerts_page.alert_click_ok()
+    get_prompt_result_text_ok = alerts_page.get_prompt_result_text()
 
 
     # time.sleep(2)
@@ -57,3 +76,17 @@ def test_alerts_page(browser, config):
         "Alert not displayed!!"
     assert get_confirm_result_text_cancel == 'You selected Cancel', \
         'The answer does not match after clicking "Cancel"!!'
+    assert get_alert_text_witch_prompt_box_empty_ok == 'Please enter your name', \
+        "Alert not displayed!!"
+    assert check_is_displayed_prompt_text_ok == False, \
+        'The answer text exists after clicking "Ok"!!'
+    assert get_alert_text_witch_prompt_box_cancel == 'Please enter your name', \
+        "Alert not displayed!!"
+    assert check_is_displayed_prompt_text_cancel == False, \
+        'The answer text exists after clicking "Cancel"!!'
+
+
+    assert get_alert_text_witch_prompt_box_ok == 'Please enter your name', \
+        "Alert not displayed!!"
+    assert get_prompt_result_text_ok == 'You entered User', \
+        'The answer does not match after clicking "Ok"!!'

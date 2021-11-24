@@ -1,4 +1,4 @@
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .BasePage import BasePage
@@ -13,7 +13,9 @@ DISPLAYED_ALERT_BUTTON = '//button[@id="alertButton"]'
 ID_ALERT_BUTTON = '//button[@id="alertButton"]'
 ID_ALERT_BUTTON_WITCH_APPEAR_AFTER = '//button[@id="timerAlertButton"]'
 ID_ALERT_BUTTON_WITCH_CONFIRM_BOX = '//button[@id="confirmButton"]'
+ID_ALERT_BUTTON_WITCH_PROMPT_BOX = '//button[@id="promtButton"]'
 GET_CONFIRM_RESULT_TEXT = '//span[@id="confirmResult"]'
+GET_PROMPT_RESULT_TEXT = '//span[@id="promptResult"]'
 
 
 class AlertsPage(BasePage):
@@ -30,6 +32,18 @@ class AlertsPage(BasePage):
             By.XPATH, DISPLAYED_ALERT_BUTTON)
         return self.base_element.check_is_displayed(element)
 
+    def check_is_displayed_prompt_text(self):
+        time_displayed_prompt_text = 1
+        try:
+            self.browser.implicitly_wait(time_displayed_prompt_text)
+            element = self.base_element.find_element_(
+                By.XPATH, GET_PROMPT_RESULT_TEXT)
+            self.base_element.check_is_displayed(element)
+        except NoSuchElementException:
+            return False
+        return True
+
+
     def click_alert_button(self):
         return self.click_element(By.XPATH, ID_ALERT_BUTTON)
 
@@ -41,11 +55,24 @@ class AlertsPage(BasePage):
         return self.click_element(
             By.XPATH, ID_ALERT_BUTTON_WITCH_CONFIRM_BOX)
 
+    def click_alert_button_witch_prompt_box(self):
+        return self.click_element(
+            By.XPATH, ID_ALERT_BUTTON_WITCH_PROMPT_BOX)
+
+
     def get_confirm_result_text(self):
         return self.get_text(By.XPATH, GET_CONFIRM_RESULT_TEXT)
 
+    def get_prompt_result_text(self):
+        return self.get_text(By.XPATH, GET_PROMPT_RESULT_TEXT)
+
+
     def get_alert_text(self):
         return Alert(self.browser).text
+
+    def enter_text_in_alert_prompt(self):
+        return Alert(self.browser).send_keys("User")
+
 
     def wait_while_alert_is_present(self):
         return WebDriverWait(self.browser, TIME_DEFAULT).until(
