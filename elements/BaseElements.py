@@ -1,10 +1,11 @@
 class BaseElements:
 
-    def __init__(self, browser):
-        self.browser = browser
+    # def __init__(self, browser):
+    #     self.browser = browser
 
-    def find_element_(self, locator, element):
-        return self.browser.find_element(locator, element)
+    @staticmethod
+    def find_element_(browser, locator, element):
+        return browser.find_element(locator, element)
 
     def click_(self, element):
         return element.click()

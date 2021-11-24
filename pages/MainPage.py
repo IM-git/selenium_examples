@@ -15,5 +15,5 @@ class MainPage(BasePage):
         self.wait_presence_of_element_located((By.XPATH, ELEMENT_IMG))
 
     def check_is_displayed_img(self):
-        element = self.base_element.find_element_(By.XPATH, ELEMENT_IMG)
+        element = self.base_element.find_element_(self.browser, By.XPATH, ELEMENT_IMG)
         return self.base_element.check_is_displayed(element)

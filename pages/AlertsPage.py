@@ -27,9 +27,10 @@ class AlertsPage(BasePage):
         self.wait_presence_of_element_located(
             (By.XPATH, WAIT_WHILE_LOAD_IN_ALERT_PAGE))
 
+# CHECK IS DISPLAYED
     def check_is_displayed_alerts_button(self):
         element = self.base_element.find_element_(
-            By.XPATH, DISPLAYED_ALERT_BUTTON)
+            self.browser, By.XPATH, DISPLAYED_ALERT_BUTTON)
         return self.base_element.check_is_displayed(element)
 
     def check_is_displayed_prompt_text(self):
@@ -37,13 +38,13 @@ class AlertsPage(BasePage):
         try:
             self.browser.implicitly_wait(time_displayed_prompt_text)
             element = self.base_element.find_element_(
-                By.XPATH, GET_PROMPT_RESULT_TEXT)
+                self.browser, By.XPATH, GET_PROMPT_RESULT_TEXT)
             self.base_element.check_is_displayed(element)
         except NoSuchElementException:
             return False
         return True
 
-
+# CLICK BUTTON
     def click_alert_button(self):
         return self.click_element(By.XPATH, ID_ALERT_BUTTON)
 
@@ -59,27 +60,28 @@ class AlertsPage(BasePage):
         return self.click_element(
             By.XPATH, ID_ALERT_BUTTON_WITCH_PROMPT_BOX)
 
-
+# GET TEXT
     def get_confirm_result_text(self):
         return self.get_text(By.XPATH, GET_CONFIRM_RESULT_TEXT)
 
     def get_prompt_result_text(self):
         return self.get_text(By.XPATH, GET_PROMPT_RESULT_TEXT)
 
-
+# WORK WITH ALERT
     def get_alert_text(self):
         return Alert(self.browser).text
 
     def enter_text_in_alert_prompt(self):
         return Alert(self.browser).send_keys("User")
 
-
+# WORK WITH WAIT ALERT
     def wait_while_alert_is_present(self):
         return WebDriverWait(self.browser, TIME_DEFAULT).until(
                 EC.alert_is_present(),
                 'Timed out waiting for PA creation'
                 'confirmation popup to appear.')
 
+# CLICK BUTTON ALERT
     def alert_click_ok(self):
         try:
             self.wait_while_alert_is_present()

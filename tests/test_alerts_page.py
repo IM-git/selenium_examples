@@ -85,7 +85,6 @@ def test_alerts_page(browser, config):
     assert check_is_displayed_prompt_text_cancel == False, \
         'The answer text exists after clicking "Cancel"!!'
 
-
     assert get_alert_text_witch_prompt_box_ok == 'Please enter your name', \
         "Alert not displayed!!"
     assert get_prompt_result_text_ok == 'You entered User', \

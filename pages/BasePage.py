@@ -12,7 +12,7 @@ class BasePage:
     def __init__(self, browser, config):
         self.config = config
         self.browser = browser
-        self.base_element = BaseElements(self.browser)
+        self.base_element = BaseElements()
 
     def open_page(self, link):
         self.browser.get(link)
@@ -36,11 +36,11 @@ class BasePage:
 
     def get_text(self, locator, element):
         return self.base_element.get_text_(
-            self.base_element.find_element_(locator, element))
+            self.base_element.find_element_(self.browser, locator, element))
 
     def click_element(self, locator, element):
         return self.base_element.click_(
-            self.base_element.find_element_(locator, element))
+            self.base_element.find_element_(self.browser, locator, element))
 
     # def click_element(self, locator, element):
     #     return BaseElements(self.browser).click_(BaseElements(self.browser).find_element_(locator, element))
