@@ -11,10 +11,13 @@ class MouseKeyboardActions:
         return webdriver.ActionChains(self.browser).move_to_element(element).perform()
 
     def one_click(self, value):
-        return webdriver.ActionChains(self.browser).click(value)
+        return webdriver.ActionChains(self.browser).click(value).perform()
 
     def double_click(self, value):
         return webdriver.ActionChains(self.browser).double_click(value).perform()
+
+    def right_click(self, value):
+        return webdriver.ActionChains(self.browser).context_click(value).perform()
 
     def select_all_text(self, element):     # triple click
         return webdriver.ActionChains(self.browser).double_click(element).click()

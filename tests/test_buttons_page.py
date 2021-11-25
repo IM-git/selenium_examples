@@ -17,6 +17,14 @@ def test_buttons_page(browser, config):
     click_double_click_button = buttons_page.click_double_click_button()
     get_double_click_result_text = buttons_page.get_double_click_result_text()
 
+# RIGHT CLICK BUTTON
+    click_one_right_button = buttons_page.click_one_right_button()
+    get_right_click_result_text = buttons_page.get_right_click_result_text()
+
+# ONE CLICK BUTTON
+    click_button = buttons_page.click_button()
+    get_click_result_text = buttons_page.get_click_result_text()
+
     # time.sleep(2)
 
     assert get_title_buttons_page == "ToolsQA", "Another page is opened!"
@@ -24,3 +32,7 @@ def test_buttons_page(browser, config):
         "The page is not loaded!!"
     assert get_double_click_result_text == 'You have done a double click', \
         'The answer does not match after double click!!'
+    assert get_right_click_result_text == 'You have done a right click', \
+        'The answer does not match after right click!!'
+    assert get_click_result_text == 'You have done a dynamic click', \
+        'The answer does not match after right click!!'
