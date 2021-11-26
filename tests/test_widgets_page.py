@@ -28,8 +28,10 @@ class TestWidgets:
             check_is_displayed_button()
         click_start_button = widgets_page.click_start_stop_button()
         wait_while_progress_bar_became = widgets_page.wait_while_progress_bar_became()
-        print(widgets_page.text())
         click_stop_button = widgets_page.click_start_stop_button()
+        get_value_progress_bar = widgets_page.get_value_progress_bar()
 
         assert check_is_displayed_reset_button == True,\
             "The page is not loaded!!"
+        assert wait_while_progress_bar_became in get_value_progress_bar,\
+            "Entered value isn't match with value in the page!!"

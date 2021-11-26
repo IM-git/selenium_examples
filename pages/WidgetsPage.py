@@ -16,6 +16,7 @@ PROGRESS_BAR_START_STOP_BUTTON = '//button[@id="startStopButton"]'
 PROGRESS_BAR_RESET_BUTTON = '//button[@id="resetButton"]'
 VALUE_PROGRESS_BAR = '//div[@class="progress-bar bg-info"]'
 TEST_ELEM = '//div[text()="19%"]'
+VALUE_PERCENT = 7
 
 
 class WidgetsPage:
@@ -71,11 +72,20 @@ class WidgetsPage:
                 self.browser, By.XPATH, PROGRESS_BAR_RESET_BUTTON)
             return MouseKeyboardActions(self.browser).one_click(value)
 
-        def text(self):
+        def get_value_progress_bar(self):
             return self.get_text(By.XPATH, VALUE_PROGRESS_BAR)
 
+        # My function has no way to get the correct value of 1 to 4 percent.
         def wait_while_progress_bar_became(self):
-            # return time.sleep(2)
-            element = self.base_element.find_element_(self.browser, By.XPATH, TEST_ELEM)
-            return WebDriverWait(self.browser, 10).until(EC.text_to_be_present_in_element(
-                (By.XPATH, VALUE_PROGRESS_BAR), '19%'))
+            value_of_1_to_4 = 4
+            if VALUE_PERCENT >= value_of_1_to_4:
+                value = VALUE_PERCENT - 3
+                return self.correcting_value_percent(value)
+            else:
+                return self.correcting_value_percent(VALUE_PERCENT)
+
+        def correcting_value_percent(self, value):
+            if str(value) in self.get_value_progress_bar():
+                return str(VALUE_PERCENT)
+            else:
+                return self.correcting_value_percent(value)
