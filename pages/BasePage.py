@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.expected_conditions import text_to_be_present_in_element, \
+    text_to_be_present_in_element_value, visibility_of_element_located, presence_of_element_located
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from elements.BaseElements import BaseElements
