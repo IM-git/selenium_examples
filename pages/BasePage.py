@@ -28,6 +28,9 @@ class BasePage:
     def go_back(self):
         return self.browser.back()
 
+    def refresh_page(self):
+        return self.browser.refresh()
+
     def wait_element_to_be_clickable(self, element):
         return WebDriverWait(self.browser, TIME).until(
             EC.element_to_be_clickable(element))
@@ -44,9 +47,3 @@ class BasePage:
         return self.base_element.click_(
             self.base_element.find_element_(self.browser, locator, element))
 
-    # def click_element(self, locator, element):
-    #     return BaseElements(self.browser).click_(BaseElements(self.browser).find_element_(locator, element))
-
-    # @staticmethod
-    # def findfind(browser, locator, element):    # Вариант что бы не оправлять в BaseElement browser а делать все здесь
-    #     return browser.BaseElements().find_element_(locator, element)

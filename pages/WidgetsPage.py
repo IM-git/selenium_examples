@@ -49,7 +49,9 @@ class WidgetsPage:
         def checking_slider_value(self):
             element = self.base_element.find_element_(
                 self.browser, By.XPATH, VALUE_SLIDER)
-            return int(self.base_element.get_to_attribute(element=element, attribute="value"))-25
+            # return int(self.base_element.get_to_attribute(element=element, attribute="value"))-25
+            value =  int(self.base_element.get_to_attribute(element=element, attribute="value"))-25
+            return abs(value)
 
     # PROGRESS BAR PAGE
     class ProgressBar(BasePage):
@@ -78,8 +80,9 @@ class WidgetsPage:
         # My function has no way to get the correct value of 1 to 4 percent.
         def wait_while_progress_bar_became(self):
             value_of_1_to_4 = 4
+            correcting_value = 2
             if VALUE_PERCENT >= value_of_1_to_4:
-                value = VALUE_PERCENT - 3
+                value = VALUE_PERCENT - correcting_value
                 return self.correcting_value_percent(value)
             else:
                 return self.correcting_value_percent(VALUE_PERCENT)
