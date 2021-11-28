@@ -11,7 +11,7 @@ class MouseKeyboardActions:
         return webdriver.ActionChains(self.browser).move_to_element(element).perform()
 
     def one_click(self, value):
-        return webdriver.ActionChains(self.browser).click(value).perform()
+        return webdriver.ActionChains(self.browser).click(value)
 
     def double_click(self, value):
         return webdriver.ActionChains(self.browser).double_click(value).perform()
@@ -23,7 +23,7 @@ class MouseKeyboardActions:
         return webdriver.ActionChains(self.browser).double_click(element).click()
 
     def enter_text(self, text):
-        return webdriver.ActionChains(self.browser).send_keys(text)
+        return webdriver.ActionChains(self.browser).send_keys(text).perform()
 
     def delete_text(self, element):
         return element.send_keys(Keys.DELETE).perform()

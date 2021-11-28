@@ -46,4 +46,3 @@ class BasePage:
     def click_element(self, locator, element):
         return self.base_element.click_(
             self.base_element.find_element_(self.browser, locator, element))
-
