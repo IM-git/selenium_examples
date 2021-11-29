@@ -1,8 +1,7 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.expected_conditions import text_to_be_present_in_element, \
-    text_to_be_present_in_element_value, visibility_of_element_located, presence_of_element_located
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import Keys
 from elements.BaseElements import BaseElements
 
 
@@ -42,6 +41,11 @@ class BasePage:
     def get_text(self, locator, element):
         return self.base_element.get_text_(
             self.base_element.find_element_(self.browser, locator, element))
+
+    def enter_text(self, locator, element):
+        value = self.base_element.find_element_(
+            self.browser, locator, element)
+        return value.send_keys()
 
     def click_element(self, locator, element):
         return self.base_element.click_(
