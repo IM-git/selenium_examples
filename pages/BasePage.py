@@ -3,9 +3,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 from elements.BaseElements import BaseElements
+from locators.Base import *
 
-
-TIME = 10
+# TIME = 10
 
 
 class BasePage:
@@ -31,12 +31,15 @@ class BasePage:
         return self.browser.refresh()
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.browser, TIME).until(
+        return WebDriverWait(self.browser, Base.TIME).until(
             EC.element_to_be_clickable(element))
 
     def wait_presence_of_element_located(self, element):
-        return WebDriverWait(self.browser, TIME).until(
+        return WebDriverWait(self.browser, Base.TIME).until(
             EC.presence_of_element_located(element))
+
+    def _implicitly_wait(self, time):
+        return self.browser.implicitly_wait(time)
 
     def get_text(self, locator, element):
         return self.base_element.get_text_(

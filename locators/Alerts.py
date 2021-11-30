@@ -9,3 +9,4 @@ class Alerts:
     ID_ALERT_BUTTON_WITCH_PROMPT_BOX = '//button[@id="promtButton"]'
     GET_CONFIRM_RESULT_TEXT = '//span[@id="confirmResult"]'
     GET_PROMPT_RESULT_TEXT = '//span[@id="promptResult"]'
+    ENTER_TEXT_IN_ALERT_PROMPT = 'User'

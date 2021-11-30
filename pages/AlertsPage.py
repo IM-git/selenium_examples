@@ -4,94 +4,49 @@ from selenium.webdriver.support import expected_conditions as EC
 from .BasePage import BasePage
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
-
-
-TIME_DEFAULT = 10
-LINK = 'https://demoqa.com/alerts'
-WAIT_WHILE_LOAD_IN_ALERT_PAGE = '//div[@class="body-height"]'
-DISPLAYED_ALERT_BUTTON = '//button[@id="alertButton"]'
-ID_ALERT_BUTTON = '//button[@id="alertButton"]'
-ID_ALERT_BUTTON_WITCH_APPEAR_AFTER = '//button[@id="timerAlertButton"]'
-ID_ALERT_BUTTON_WITCH_CONFIRM_BOX = '//button[@id="confirmButton"]'
-ID_ALERT_BUTTON_WITCH_PROMPT_BOX = '//button[@id="promtButton"]'
-GET_CONFIRM_RESULT_TEXT = '//span[@id="confirmResult"]'
-GET_PROMPT_RESULT_TEXT = '//span[@id="promptResult"]'
+from locators import Alerts
 
 
 class AlertsPage(BasePage):
 
-    def open_alerts_page(self):
-        return self.open_page(LINK)
-
-    def wait_while_loaded_alerts_page(self):
-        self.wait_presence_of_element_located(
-            (By.XPATH, WAIT_WHILE_LOAD_IN_ALERT_PAGE))
-
 # CHECK IS DISPLAYED
-    def check_is_displayed_alerts_button(self):
-        element = self.base_element.find_element_(
-            self.browser, By.XPATH, DISPLAYED_ALERT_BUTTON)
-        return self.base_element.check_is_displayed(element)
+    def check_is_displayed_alerts_button(self, locator, element):   # Should be moved in BasePage.py
+        return self.base_element.check_is_displayed_2_0(self.browser, locator, element)
 
-    def check_is_displayed_prompt_text(self):
+    def check_is_displayed_prompt_text(self, locator, element):
         time_displayed_prompt_text = 1
         try:
-            self.browser.implicitly_wait(time_displayed_prompt_text)
-            element = self.base_element.find_element_(
-                self.browser, By.XPATH, GET_PROMPT_RESULT_TEXT)
-            self.base_element.check_is_displayed(element)
+            self._implicitly_wait(time_displayed_prompt_text)
+            self.base_element.check_is_displayed_2_0(self.browser, locator, element)
         except NoSuchElementException:
             return False
         return True
-
-# CLICK BUTTON
-    def click_alert_button(self):
-        return self.click_element(By.XPATH, ID_ALERT_BUTTON)
-
-    def click_alert_button_witch_appear_after_5_seconds(self):
-        return self.click_element(
-            By.XPATH, ID_ALERT_BUTTON_WITCH_APPEAR_AFTER)
-
-    def click_alert_button_witch_confirm_box(self):
-        return self.click_element(
-            By.XPATH, ID_ALERT_BUTTON_WITCH_CONFIRM_BOX)
-
-    def click_alert_button_witch_prompt_box(self):
-        return self.click_element(
-            By.XPATH, ID_ALERT_BUTTON_WITCH_PROMPT_BOX)
-
-# GET TEXT
-    def get_confirm_result_text(self):
-        return self.get_text(By.XPATH, GET_CONFIRM_RESULT_TEXT)
-
-    def get_prompt_result_text(self):
-        return self.get_text(By.XPATH, GET_PROMPT_RESULT_TEXT)
 
 # WORK WITH ALERT
     def get_alert_text(self):
         return Alert(self.browser).text
 
-    def enter_text_in_alert_prompt(self):
-        return Alert(self.browser).send_keys("User")
+    def enter_text_in_alert_prompt(self, text):
+        return Alert(self.browser).send_keys(text)
 
 # WORK WITH WAIT ALERT
-    def wait_while_alert_is_present(self):
-        return WebDriverWait(self.browser, TIME_DEFAULT).until(
+    def wait_while_alert_is_present(self, time):
+        return WebDriverWait(self.browser, time).until(
                 EC.alert_is_present(),
                 'Timed out waiting for PA creation'
                 'confirmation popup to appear.')
 
 # CLICK BUTTON ALERT
-    def alert_click_ok(self):
+    def alert_click_ok(self, time):
         try:
-            self.wait_while_alert_is_present()
+            self.wait_while_alert_is_present(time)
             self.browser.switch_to.alert.accept()
         except TimeoutException:
             raise Exception('No alert!!')
 
-    def alert_click_cancel(self):
+    def alert_click_cancel(self, time):
         try:
-            self.wait_while_alert_is_present()
+            self.wait_while_alert_is_present(time)
             self.browser.switch_to.alert.dismiss()
         except TimeoutException:
             raise Exception('No alert!!')

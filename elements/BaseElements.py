@@ -18,3 +18,6 @@ class BaseElements:
 
     def check_is_displayed(self, element):
         return element.is_displayed()
+
+    def check_is_displayed_2_0(self, browser, locator, element):
+        return BaseElements.find_element_(browser, locator, element).is_displayed()
