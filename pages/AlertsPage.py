@@ -17,7 +17,8 @@ class AlertsPage(BasePage):
         time_displayed_prompt_text = 1
         try:
             self._implicitly_wait(time_displayed_prompt_text)
-            self.base_element.check_is_displayed_2_0(self.browser, locator, element)
+            self.base_element.check_is_displayed_2_0(
+                self.browser, locator, element)
         except NoSuchElementException:
             return False
         return True

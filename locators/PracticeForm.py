@@ -19,6 +19,7 @@ class PracticeForm:
     ID_MOBILE_NUMBER = '//input[@id="userNumber"]'
     ID_DATE_OF_BIRTH = '//input[@id="dateOfBirthInput"]'
     ID_SUBJECT = '//input[@id="subjectsInput"]'
+    # ID_SUBJECT = '//div[contains(@class,"subjects-auto-complete__control")]'
     ID_HOBIE_SPORTS = '//input[@id="hobbies-checkbox-1"]'
     ID_HOBIE_READING = '//input[@id="hobbies-checkbox-2"]'
     ID_HOBIE_MUSIC = '//input[@id="hobbies-checkbox-3"]'
