@@ -12,7 +12,7 @@ def test_buttons_page(browser, config):
         wait_presence_of_element_located(
         (By.XPATH, Buttons.BUTTON_DOUBLE_CLICK_ME))
     check_is_displayed_double_click_button = buttons_page. \
-        check_is_displayed_double_click_button(
+        check_is_displayed(
         browser, By.XPATH, Buttons.BUTTON_DOUBLE_CLICK_ME)
 
 # DOUBLE CLICK BUTTON

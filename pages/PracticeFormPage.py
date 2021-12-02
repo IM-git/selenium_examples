@@ -10,10 +10,6 @@ from tools.MouseKeyboardActions import MouseKeyboardActions
 
 class PracticeFormPage(BasePage):
 
-    def check_is_displayed_value(self, browser, locator, element):
-        return self.base_element.check_is_displayed_2_0(
-            browser, locator, element)
-
 # ENTER VALUES
     def enter_value(self, browser, locator, element, name):
         value = self.base_element.find_element_(

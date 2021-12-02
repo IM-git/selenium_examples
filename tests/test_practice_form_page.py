@@ -13,7 +13,7 @@ def test_practice_form_page(browser, config):
     open_practice_form_page = practice_form_page.open_page(
         PracticeForm.LINK_PRACTICE_FORM_PAGE)
     check_is_displayed_practice_form_page = practice_form_page.\
-        check_is_displayed_value(
+        check_is_displayed(
         browser, By.XPATH, PracticeForm.ID_BUTTON_SUBMIT)
     enter_first_name = practice_form_page.enter_value(
         browser, By.XPATH, PracticeForm.ID_FIRST_NAME, PracticeForm.FIRST_NAME)
@@ -54,7 +54,7 @@ def test_practice_form_page(browser, config):
     click_submit = practice_form_page.click_value(
         browser, By.XPATH, PracticeForm.ID_SUBMIT)
     check_is_displayed_modal_body = practice_form_page.\
-        check_is_displayed_value(
+        check_is_displayed(
         browser, By.XPATH, PracticeForm.DIV_MODAL_BODY)
 
     assert check_is_displayed_practice_form_page == True, \

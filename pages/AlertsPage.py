@@ -10,15 +10,12 @@ from locators import Alerts
 class AlertsPage(BasePage):
 
 # CHECK IS DISPLAYED
-    def check_is_displayed_alerts_button(self, locator, element):   # Should be moved in BasePage.py
-        return self.base_element.check_is_displayed_2_0(self.browser, locator, element)
-
-    def check_is_displayed_prompt_text(self, locator, element):
+    def check_is_displayed_prompt_text(self, browser, locator, element):
         time_displayed_prompt_text = 1
         try:
             self._implicitly_wait(time_displayed_prompt_text)
-            self.base_element.check_is_displayed_2_0(
-                self.browser, locator, element)
+            self.check_is_displayed(
+                browser, locator, element)
         except NoSuchElementException:
             return False
         return True

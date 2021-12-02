@@ -13,8 +13,8 @@ def test_alerts_page(browser, config):
         wait_presence_of_element_located(
         (By.XPATH, Alerts.WAIT_WHILE_LOAD_IN_ALERT_PAGE))
     check_is_displayed_alerts_button = alerts_page.\
-        check_is_displayed_alerts_button(
-        By.XPATH, Alerts.DISPLAYED_ALERT_BUTTON)
+        check_is_displayed(
+        browser, By.XPATH, Alerts.DISPLAYED_ALERT_BUTTON)
 
 # ALERT BUTTON
     click_alert_button = alerts_page.click_element(
@@ -54,7 +54,7 @@ def test_alerts_page(browser, config):
     alert_click_ok = alerts_page.alert_click_ok(Alerts.TIME_DEFAULT)
     check_is_displayed_prompt_text_ok =\
         alerts_page.check_is_displayed_prompt_text(
-            By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
+            browser, By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
 
 # PROMPT BOX 'Cancel'
     click_alert_button_witch_prompt_box = alerts_page.click_element(
@@ -63,7 +63,7 @@ def test_alerts_page(browser, config):
     alert_click_ok = alerts_page.alert_click_ok(Alerts.TIME_DEFAULT)
     check_is_displayed_prompt_text_cancel =\
         alerts_page.check_is_displayed_prompt_text(
-            By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
+            browser, By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
 
 # PROMPT BOX 'Ok' WITH TEXT
     click_alert_button_witch_prompt_box = alerts_page.click_element(

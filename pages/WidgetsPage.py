@@ -12,10 +12,6 @@ class WidgetsPage:
     # SLIDER PAGE
     class Slider(BasePage):
 
-        def check_is_displayed_slider(self, browser, locator, element):
-            return self.base_element.check_is_displayed_2_0(
-                browser, locator, element)
-
         def move_to_slider(self, locator, element):
             value = self.base_element.find_element_(
                 self.browser, locator, element)
@@ -36,10 +32,6 @@ class WidgetsPage:
 
     # PROGRESS BAR PAGE
     class ProgressBar(BasePage):
-
-        def check_is_displayed_button(self, browser, locator, element):
-            return self.base_element.check_is_displayed_2_0(
-                browser, locator, element)
 
         def click_button(self, browser, locator, element):
             value = self.base_element.find_element_(browser, locator, element)

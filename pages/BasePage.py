@@ -5,8 +5,6 @@ from selenium.webdriver import Keys
 from elements.BaseElements import BaseElements
 from locators.Base import Base
 
-# TIME = 10
-
 
 class BasePage:
 
@@ -53,3 +51,6 @@ class BasePage:
     def click_element(self, locator, element):
         return self.base_element.click_(
             self.base_element.find_element_(self.browser, locator, element))
+
+    def check_is_displayed(self, browser, locator, element):
+        return BaseElements.find_element_(browser, locator, element).is_displayed()

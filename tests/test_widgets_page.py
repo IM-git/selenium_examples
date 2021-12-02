@@ -10,7 +10,7 @@ class TestWidgets:
     def test_slider(browser, config):
         widgets_page = WidgetsPage.Slider(browser, config)
         open_slider_page = widgets_page.open_page(Widgets.LINK_SLIDER_PAGE)
-        check_is_displayed_slider = widgets_page.check_is_displayed_slider(
+        check_is_displayed_slider = widgets_page.check_is_displayed(
             browser, By.XPATH, Widgets.INPUT_SLIDER)
         move_to_slider = widgets_page.move_to_slider(
             By.XPATH, Widgets.INPUT_SLIDER)
@@ -31,7 +31,7 @@ class TestWidgets:
         open_progress_bar = widgets_page.open_page(
             Widgets.LINK_PROGRESS_BAR_PAGE)
         check_is_displayed_reset_button = widgets_page.\
-            check_is_displayed_button(
+            check_is_displayed(
             browser, By.XPATH, Widgets.PROGRESS_BAR_START_STOP_BUTTON)
         click_start_button = widgets_page.click_button(
             browser, By.XPATH, Widgets.PROGRESS_BAR_START_STOP_BUTTON)

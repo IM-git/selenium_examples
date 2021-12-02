@@ -9,7 +9,7 @@ def test_main_page(browser, config):
     get_title_demoqa = main_page.get_title()
     wait_while_open_demoqa = main_page.wait_presence_of_element_located(
         (By.XPATH, Main.ELEMENT_IMG))
-    check_is_displayed_element_img = main_page.check_is_displayed_img(
+    check_is_displayed_element_img = main_page.check_is_displayed(
         browser, By.XPATH, Main.ELEMENT_IMG)
 
     assert get_title_demoqa == "ToolsQA", "Another page is opened!"
