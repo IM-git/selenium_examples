@@ -3,7 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 from elements.BaseElements import BaseElements
-from locators.Base import *
+from locators.Base import Base
 
 # TIME = 10
 
