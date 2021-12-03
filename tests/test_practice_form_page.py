@@ -11,7 +11,7 @@ from pages import PracticeFormPage
 def test_practice_form_page(browser, config):
     practice_form_page = PracticeFormPage(browser, config)
     open_practice_form_page = practice_form_page.open_page(
-        PracticeForm.LINK_PRACTICE_FORM_PAGE)
+        browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
     check_is_displayed_practice_form_page = practice_form_page.\
         check_is_displayed(
         browser, By.XPATH, PracticeForm.ID_BUTTON_SUBMIT)

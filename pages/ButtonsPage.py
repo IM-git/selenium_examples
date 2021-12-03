@@ -6,18 +6,17 @@ from selenium.webdriver.common.by import By
 class ButtonsPage(BasePage):
 
 # CLICK BUTTON
-    def click_double_click_button(self, locator, element):
+    def click_double_click_button(self, browser, locator, element):
         value = self.base_element.find_element_(
-            self.browser, locator, element)
-        return MouseKeyboardActions(self.browser).double_click(value)
+            browser, locator, element)
+        return MouseKeyboardActions(browser).double_click(value)
 
-    def click_one_right_button(self, locator, element):
+    def click_one_right_button(self, browser, locator, element):
         value = self.base_element.find_element_(
-            self.browser, locator, element)
-        return MouseKeyboardActions(self.browser).right_click(value)
+            browser, locator, element)
+        return MouseKeyboardActions(browser).right_click(value)
 
-    def click_button(self, locator, element):
+    def click_button(self, browser, locator, element):
         value = self.base_element.find_element_(
-            self.browser, locator, element)
-        return MouseKeyboardActions(self.browser).one_click(value)
-
+            browser, locator, element)
+        return MouseKeyboardActions(browser).one_click(value)

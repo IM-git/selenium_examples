@@ -38,7 +38,7 @@ class PracticeFormPage(BasePage):
 
     def enter_place(self, browser, locator, element, place):
         value = self.base_element.find_element_(browser, locator, element)
-        self.wait_element_to_be_clickable(value)
+        self.wait_element_to_be_clickable(browser, value)
         click = self.base_element.click_(value)
         MouseKeyboardActions(browser).enter_text(place)
         MouseKeyboardActions(browser).click_enter()
