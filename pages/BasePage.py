@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,9 +9,7 @@ from locators.Base import Base
 
 class BasePage:
 
-    def __init__(self, browser, config):
-        # self.config = config
-        # self.browser = browser
+    def __init__(self):
         self.base_element = BaseElements()
 
     def open_page(self, browser, link):
@@ -52,5 +51,14 @@ class BasePage:
         return self.base_element._click(
             self.base_element._find_element(browser, locator, element))
 
+    # def check_is_displayed(self, browser, locator, element):
+    #     return BaseElements._find_element(browser, locator, element).is_displayed()
+
     def check_is_displayed(self, browser, locator, element):
-        return BaseElements._find_element(browser, locator, element).is_displayed()
+        __implicitly_wait_time = 1
+        browser.implicitly_wait(__implicitly_wait_time)
+        try:
+            BaseElements._find_element(browser, locator, element).is_displayed()
+        except NoSuchElementException:
+            return False
+        return True

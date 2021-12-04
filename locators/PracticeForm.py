@@ -29,3 +29,5 @@ class PracticeForm:
     DIV_SELECT_CITY = '//div[@id="city"]'
     ID_SUBMIT = '//button[@id="submit"]'
     DIV_MODAL_BODY = '//div[@class="modal-body"]'
+    MODAL_CONTENT = '//div[@class="modal-content"]'
+    USER_FORM = '//form[@id="userForm"]'

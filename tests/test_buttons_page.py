@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 
 def test_buttons_page(browser, config):
 
-    buttons_page = ButtonsPage(browser, config)
+    buttons_page = ButtonsPage()
     open_buttons_page = buttons_page.open_page(browser, Buttons.LINK)
     get_title_buttons_page = buttons_page.get_title(browser)
     wait_while_loaded_buttons_page = buttons_page. \
