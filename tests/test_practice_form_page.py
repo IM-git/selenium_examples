@@ -12,7 +12,7 @@ class TestPracticeForm:
 
     @staticmethod
     def test_practice_form_page_right(browser, config):
-        practice_form_page = PracticeFormPage(browser, config)
+        practice_form_page = PracticeFormPage()
         open_practice_form_page = practice_form_page.open_page(
             browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
         check_is_displayed_practice_form_page = practice_form_page.\
@@ -63,11 +63,15 @@ class TestPracticeForm:
         check_is_displayed_modal_body = practice_form_page.\
             check_is_displayed(
             browser, By.XPATH, PracticeForm.DIV_MODAL_BODY)
+        get_attribute = practice_form_page.get_attribute(
+            browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
         assert check_is_displayed_practice_form_page == True, \
                     "The page is not loaded!!"
         assert check_is_displayed_modal_body == True, \
             "The modal body is not loaded!!"
+        assert get_attribute == "was-validated", \
+            "Submit button is not pushed!!"
 
     @staticmethod
     def test_practice_form_page_failed(browser, config):
@@ -78,21 +82,8 @@ class TestPracticeForm:
             check_is_displayed(
             browser, By.XPATH, PracticeForm.ID_BUTTON_SUBMIT)
 
-        # enter_first_name = practice_form_page.enter_value(
-        #     browser, By.XPATH, PracticeForm.ID_FIRST_NAME,
-        #     PracticeForm.FIRST_NAME)
-        # enter_last_name = practice_form_page.enter_value(
-        #     browser, By.XPATH, PracticeForm.ID_LAST_NAME,
-        #     PracticeForm.LAST_NAME)
-
         enter_email = practice_form_page.enter_value(
             browser, By.XPATH, PracticeForm.ID_EMAIL, PracticeForm.EMAIL)
-
-        # choice_gender = practice_form_page.click_value(
-        #     browser, By.XPATH, PracticeForm.ID_GENDER_OTHER)
-        # enter_mobile_number = practice_form_page.enter_value(
-        #     browser, By.XPATH, PracticeForm.ID_MOBILE_NUMBER,
-        #     PracticeForm.MOBILE_NUMBER)
 
         enter_date_of_birth = practice_form_page.enter_date_of_birth(
             browser, By.XPATH, PracticeForm.ID_DATE_OF_BIRTH,
@@ -123,12 +114,15 @@ class TestPracticeForm:
             PracticeForm.CITY)
         click_submit = practice_form_page.click_value(
             browser, By.XPATH, PracticeForm.ID_SUBMIT)
-
         check_is_displayed_modal_body = practice_form_page. \
             check_is_displayed(
             browser, By.XPATH, PracticeForm.DIV_MODAL_BODY)
+        get_attribute = practice_form_page.get_attribute(
+            browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
         assert check_is_displayed_practice_form_page == True, \
             "The page is not loaded!!"
         assert check_is_displayed_modal_body == False, \
             "The modal body is loaded!!"
+        assert get_attribute == "was-validated",\
+            "Submit button is not pushed!!"

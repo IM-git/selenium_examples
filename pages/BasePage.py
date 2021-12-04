@@ -51,9 +51,6 @@ class BasePage:
         return self.base_element._click(
             self.base_element._find_element(browser, locator, element))
 
-    # def check_is_displayed(self, browser, locator, element):
-    #     return BaseElements._find_element(browser, locator, element).is_displayed()
-
     def check_is_displayed(self, browser, locator, element):
         __implicitly_wait_time = 1
         browser.implicitly_wait(__implicitly_wait_time)
@@ -62,3 +59,8 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
+
+    def get_attribute(self, browser, locator, element, attribute):
+        elements = self.base_element._find_element(
+            browser, locator, element)
+        return self.base_element._get_to_attribute(elements, attribute)

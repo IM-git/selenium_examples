@@ -28,8 +28,10 @@ class PracticeFormPage(BasePage):
 
     def enter_subject(self, browser, locator, element, subject):
         value = self.base_element._find_element(browser, locator, element)
+        self.wait_element_to_be_clickable(browser, value)
         click = self.base_element._click(value)
         MouseKeyboardActions()._enter_text(browser, subject)
+        self.wait_element_to_be_clickable(browser, value)
         MouseKeyboardActions()._click_tab(browser)
 
     def enter_path(self, browser, locator, element, path):
