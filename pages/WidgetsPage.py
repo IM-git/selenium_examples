@@ -13,20 +13,20 @@ class WidgetsPage:
     class Slider(BasePage):
 
         def move_to_slider(self, browser, locator, element):
-            value = self.base_element.find_element_(
+            value = self.base_element._find_element(
                 browser, locator, element)
-            return MouseKeyboardActions(browser).\
-                move_to_element(value)
+            return MouseKeyboardActions().\
+                _move_to_element(browser, value)
 
         def making_random_steps(self, browser, locator, element):
-            value = self.base_element.find_element_(
+            value = self.base_element._find_element(
                 browser, locator, element)
             return RandomTools.Steps.do_random_steps(value)
 
         def checking_slider_value(self, browser, locator, element):
-            elements = self.base_element.find_element_(
+            elements = self.base_element._find_element(
                 browser, locator, element)
-            value = int(self.base_element.get_to_attribute(
+            value = int(self.base_element._get_to_attribute(
                 element=elements, attribute="value"))-25
             return abs(value)
 
@@ -34,8 +34,8 @@ class WidgetsPage:
     class ProgressBar(BasePage):
 
         def click_button(self, browser, locator, element):
-            value = self.base_element.find_element_(browser, locator, element)
-            return MouseKeyboardActions(browser).one_click(value)
+            value = self.base_element._find_element(browser, locator, element)
+            return MouseKeyboardActions()._one_click(browser, value)
 
         def get_value_progress_bar(self, browser, locator, element):
             return self.get_text(browser, locator, element)

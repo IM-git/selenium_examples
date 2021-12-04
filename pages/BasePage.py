@@ -40,17 +40,17 @@ class BasePage:
         return browser.implicitly_wait(time)
 
     def get_text(self, browser, locator, element):
-        return self.base_element.get_text_(
-            self.base_element.find_element_(browser, locator, element))
+        return self.base_element._get_text(
+            self.base_element._find_element(browser, locator, element))
 
     def enter_text(self, browser, locator, element):
-        value = self.base_element.find_element_(
+        value = self.base_element._find_element(
             browser, locator, element)
         return value.send_keys()
 
     def click_element(self, browser, locator, element):
-        return self.base_element.click_(
-            self.base_element.find_element_(browser, locator, element))
+        return self.base_element._click(
+            self.base_element._find_element(browser, locator, element))
 
     def check_is_displayed(self, browser, locator, element):
-        return BaseElements.find_element_(browser, locator, element).is_displayed()
+        return BaseElements._find_element(browser, locator, element).is_displayed()
