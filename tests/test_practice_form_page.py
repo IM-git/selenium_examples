@@ -40,6 +40,8 @@ class TestPracticeForm:
         enter_subject_english = practice_form_page.enter_subject(
             browser, By.XPATH, PracticeForm.ID_SUBJECT,
             PracticeForm.SUBJECTS_ENGLISH)
+        get_subject_text_values = practice_form_page.get_text(
+            browser, By.XPATH, PracticeForm.ID_SUBJECT_CONTAINER)
         choice_hobbies_reading = practice_form_page.click_value(
             browser, By.XPATH, PracticeForm.ID_HOBIE_READING)
         choice_hobbies_music = practice_form_page.click_value(
@@ -72,6 +74,10 @@ class TestPracticeForm:
             "The modal body is not loaded!!"
         assert get_attribute == "was-validated", \
             "Submit button is not pushed!!"
+        assert PracticeForm.SUBJECTS_COMPUTER_SCIENCE and\
+            PracticeForm.SUBJECTS_ENGLISH in get_subject_text_values,\
+            f'{PracticeForm.SUBJECTS_COMPUTER_SCIENCE} and' \
+            f'{PracticeForm.SUBJECTS_ENGLISH} are not added in form!!'
 
     @staticmethod
     def test_practice_form_page_failed(browser, config):
@@ -88,12 +94,8 @@ class TestPracticeForm:
         enter_date_of_birth = practice_form_page.enter_date_of_birth(
             browser, By.XPATH, PracticeForm.ID_DATE_OF_BIRTH,
             PracticeForm.DATE_OF_BIRTH)
-        enter_subject_computer_science = practice_form_page.enter_subject(
-            browser, By.XPATH, PracticeForm.ID_SUBJECT,
-            PracticeForm.SUBJECTS_COMPUTER_SCIENCE)
-        enter_subject_english = practice_form_page.enter_subject(
-            browser, By.XPATH, PracticeForm.ID_SUBJECT,
-            PracticeForm.SUBJECTS_ENGLISH)
+        get_subject_text_values = practice_form_page.get_text(
+            browser, By.XPATH, PracticeForm.ID_SUBJECT_CONTAINER)
         choice_hobbies_reading = practice_form_page.click_value(
             browser, By.XPATH, PracticeForm.ID_HOBIE_READING)
         choice_hobbies_music = practice_form_page.click_value(
@@ -126,3 +128,4 @@ class TestPracticeForm:
             "The modal body is loaded!!"
         assert get_attribute == "was-validated",\
             "Submit button is not pushed!!"
+        assert get_subject_text_values == '', 'Some text exist!!'

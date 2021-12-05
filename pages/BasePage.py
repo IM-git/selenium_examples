@@ -55,7 +55,8 @@ class BasePage:
         __implicitly_wait_time = 1
         browser.implicitly_wait(__implicitly_wait_time)
         try:
-            BaseElements._find_element(browser, locator, element).is_displayed()
+            BaseElements._find_element(browser, locator, element).\
+                is_displayed()
         except NoSuchElementException:
             return False
         return True
