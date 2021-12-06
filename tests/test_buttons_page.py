@@ -1,8 +1,10 @@
 from pages import ButtonsPage
 from locators import Buttons
 from selenium.webdriver.common.by import By
+from tools import Logger
 
 
+@Logger.logger.catch()
 def test_buttons_page(browser, config):
 
     buttons_page = ButtonsPage()

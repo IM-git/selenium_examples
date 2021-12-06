@@ -2,8 +2,10 @@ import time
 from pages import AlertsPage
 from selenium.webdriver.common.by import By
 from locators import Alerts
+from tools import Logger
 
 
+@Logger.logger.catch()
 def test_alerts_page(browser, config):
 
     alerts_page = AlertsPage()

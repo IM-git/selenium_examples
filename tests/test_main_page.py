@@ -1,8 +1,10 @@
 from pages import MainPage
 from selenium.webdriver.common.by import By
 from locators import Main
+from tools import Logger
 
 
+@Logger.logger.catch()
 def test_main_page(browser, config):
     main_page = MainPage()
     open_site_demoqa = main_page.open_page(browser, Main.LINK)

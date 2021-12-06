@@ -2,11 +2,13 @@ import time
 from selenium.webdriver.common.by import By
 from pages import WidgetsPage
 from locators import Widgets
+from tools import Logger
 
 
 class TestWidgets:
 
     @staticmethod
+    @Logger.logger.catch()
     def test_slider(browser, config):
         widgets_page = WidgetsPage.Slider()
         open_slider_page = widgets_page.open_page(
@@ -27,6 +29,7 @@ class TestWidgets:
             "displayed value steps on the page"
 
     @staticmethod
+    @Logger.logger.catch()
     def test_progress_bar(browser, config):
         widgets_page = WidgetsPage.ProgressBar()
         open_progress_bar = widgets_page.open_page(
