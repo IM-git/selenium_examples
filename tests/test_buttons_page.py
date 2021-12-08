@@ -4,9 +4,8 @@ from selenium.webdriver.common.by import By
 from tools import Logger
 
 
-@Logger.logger.catch()
+# @Logger.logger.catch()
 def test_buttons_page(browser, config):
-
     buttons_page = ButtonsPage()
     open_buttons_page = buttons_page.open_page(browser, Buttons.LINK)
     get_title_buttons_page = buttons_page.get_title(browser)

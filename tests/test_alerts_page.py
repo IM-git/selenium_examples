@@ -5,9 +5,8 @@ from locators import Alerts
 from tools import Logger
 
 
-@Logger.logger.catch()
+# @Logger.logger.catch()
 def test_alerts_page(browser, config):
-
     alerts_page = AlertsPage()
     open_main_page = alerts_page.open_page(browser, Alerts.LINK)
     get_title_alerts_page = alerts_page.get_title(browser)
@@ -68,7 +67,7 @@ def test_alerts_page(browser, config):
         browser, By.XPATH, Alerts.ID_ALERT_BUTTON_WITCH_PROMPT_BOX)
     get_alert_text_witch_prompt_box_cancel =\
         alerts_page.get_alert_text(browser)
-    alert_click_ok = alerts_page.alert_click_ok(
+    alert_click_ok = alerts_page.alert_click_cancel(
         browser, Alerts.TIME_DEFAULT)
     check_is_displayed_prompt_text_cancel =\
         alerts_page.check_is_displayed_prompt_text(
@@ -101,12 +100,12 @@ def test_alerts_page(browser, config):
         'The answer does not match after clicking "Cancel"!!'
     assert get_alert_text_witch_prompt_box_empty_ok ==\
            'Please enter your name', "Alert not displayed!!"
-    assert check_is_displayed_prompt_text_ok == False, \
-        'The answer text exists after clicking "Ok"!!'
+    assert check_is_displayed_prompt_text_ok == True, \
+        'The answer text do not exists after clicking "Ok"!!'
     assert get_alert_text_witch_prompt_box_cancel ==\
            'Please enter your name', "Alert not displayed!!"
-    assert check_is_displayed_prompt_text_cancel == False, \
-        'The answer text exists after clicking "Cancel"!!'
+    assert check_is_displayed_prompt_text_cancel == True, \
+        'The answer text do not exists after clicking "Cancel"!!'
     assert get_alert_text_witch_prompt_box_ok == 'Please enter your name', \
         "Alert not displayed!!"
     assert get_prompt_result_text_ok == 'You entered User', \

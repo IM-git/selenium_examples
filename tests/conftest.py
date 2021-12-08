@@ -6,7 +6,7 @@ from tools.read_file import read_file
 IMPLICITLY_WAIT_TIME = 10
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='session')
 def browser():
     driver = Factory().get_browser()
     driver.implicitly_wait(IMPLICITLY_WAIT_TIME)

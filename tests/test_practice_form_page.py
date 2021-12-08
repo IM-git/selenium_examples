@@ -12,7 +12,7 @@ from tools import Logger
 class TestPracticeForm:
 
     @staticmethod
-    @Logger.logger.catch()
+    # @Logger.logger.catch()
     def test_practice_form_page_right(browser, config):
         practice_form_page = PracticeFormPage()
         open_practice_form_page = practice_form_page.open_page(
@@ -82,8 +82,9 @@ class TestPracticeForm:
             f'{PracticeForm.SUBJECTS_ENGLISH} are not added in form!!'
 
     @staticmethod
-    @Logger.logger.catch()
+    # @Logger.logger.catch()
     def test_practice_form_page_failed(browser, config):
+        print(browser)
         practice_form_page = PracticeFormPage()
         open_practice_form_page = practice_form_page.open_page(
             browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
