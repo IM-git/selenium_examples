@@ -3,6 +3,7 @@ from pages import AlertsPage
 from selenium.webdriver.common.by import By
 from locators import Alerts
 from tools import Logger
+from tools.RandomName import RandomName
 
 
 # @Logger.logger.catch()
@@ -78,7 +79,7 @@ def test_alerts_page(browser, config):
         browser, By.XPATH, Alerts.ID_ALERT_BUTTON_WITCH_PROMPT_BOX)
     get_alert_text_witch_prompt_box_ok = alerts_page.get_alert_text(browser)
     enter_text_in_alert_prompt = alerts_page.enter_text_in_alert_prompt(
-        browser, Alerts.ENTER_TEXT_IN_ALERT_PROMPT)
+        browser, Alerts.ENTER_NAME_IN_ALERT_PROMPT)
     alert_click_ok = alerts_page.alert_click_ok(browser, Alerts.TIME_DEFAULT)
     get_prompt_result_text_ok = alerts_page.get_text(
         browser, By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
@@ -108,5 +109,5 @@ def test_alerts_page(browser, config):
         'The answer text do not exists after clicking "Cancel"!!'
     assert get_alert_text_witch_prompt_box_ok == 'Please enter your name', \
         "Alert not displayed!!"
-    assert get_prompt_result_text_ok == 'You entered User', \
+    assert get_prompt_result_text_ok == f'You entered {Alerts.ENTER_NAME_IN_ALERT_PROMPT}', \
         'The answer does not match after clicking "Ok"!!'

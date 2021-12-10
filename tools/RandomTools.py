@@ -1,6 +1,7 @@
 import random
 import string
 from selenium.webdriver import Keys
+from tools.DataNames import DataNames
 
 
 class RandomTools:
@@ -36,3 +37,16 @@ class RandomTools:
             for x in range(0, step):  # Quantity taps
                 value.send_keys(side)
             return step
+
+    class RandomValue:
+
+        @staticmethod
+        def get_random_value(values):
+            return random.randint(0, values)
+
+        @staticmethod
+        def get_random_value_from_text_list(values):
+            quantity = len(values) - 1
+            num = random.randint(0, quantity)
+            return values[num]
+

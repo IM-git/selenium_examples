@@ -1,3 +1,5 @@
+from tools.RandomName import RandomName
+
 class Alerts:
     TIME_DEFAULT = 10
     LINK = 'https://demoqa.com/alerts'
@@ -9,4 +11,5 @@ class Alerts:
     ID_ALERT_BUTTON_WITCH_PROMPT_BOX = '//button[@id="promtButton"]'
     GET_CONFIRM_RESULT_TEXT = '//span[@id="confirmResult"]'
     GET_PROMPT_RESULT_TEXT = '//span[@id="promptResult"]'
-    ENTER_TEXT_IN_ALERT_PROMPT = 'User'
+    WAY = 'tools/data_names.json'
+    ENTER_NAME_IN_ALERT_PROMPT = RandomName.random_name(WAY)
