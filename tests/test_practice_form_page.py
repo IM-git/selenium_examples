@@ -29,7 +29,7 @@ class TestPracticeForm:
         enter_email = practice_form_page.enter_value(
             browser, By.XPATH, PracticeForm.ID_EMAIL, PracticeForm.EMAIL)
         choice_gender = practice_form_page.click_value(
-            browser, By.XPATH, PracticeForm.ID_GENDER_OTHER)
+            browser, By.XPATH, PracticeForm.VALUE_GENDER)
         enter_mobile_number = practice_form_page.enter_value(
             browser, By.XPATH, PracticeForm.ID_MOBILE_NUMBER,
             PracticeForm.MOBILE_NUMBER)

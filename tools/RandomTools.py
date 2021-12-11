@@ -41,8 +41,8 @@ class RandomTools:
     class RandomValue:
 
         @staticmethod
-        def get_random_value(values):
-            return random.randint(0, values)
+        def get_random_value(initial_value, end_value):
+            return random.randint(initial_value, end_value)
 
         @staticmethod
         def get_random_value_from_text_list(values):

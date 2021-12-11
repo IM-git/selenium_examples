@@ -1,3 +1,6 @@
+from tools.ChoiceGender import ChoiceGender
+
+
 class PracticeForm:
     LINK_PRACTICE_FORM_PAGE = 'https://demoqa.com/automation-practice-form'
     ID_BUTTON_SUBMIT = '//button[@id="submit"]'
@@ -15,7 +18,10 @@ class PracticeForm:
     ID_FIRST_NAME = '//input[@id="firstName"]'
     ID_LAST_NAME = '//input[@id="lastName"]'
     ID_EMAIL = '//input[@id="userEmail"]'
+    ID_GENDER_MALE = '//input[@id="gender-radio-1"]'
+    ID_GENDER_FEMALE = '//input[@id="gender-radio-2"]'
     ID_GENDER_OTHER = '//input[@id="gender-radio-3"]'
+    VALUE_GENDER = ChoiceGender.get_random_gender()
     ID_MOBILE_NUMBER = '//input[@id="userNumber"]'
     ID_DATE_OF_BIRTH = '//input[@id="dateOfBirthInput"]'
     ID_SUBJECT = '//input[@id="subjectsInput"]'
