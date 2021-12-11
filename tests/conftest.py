@@ -1,21 +1,19 @@
 import pytest
 from patterns.Factory import Factory
-from tools.read_file import read_file
+from tools.ReadFile import ReadFile
 
 
 IMPLICITLY_WAIT_TIME = 10
+CONFIG_PATH = "tests/config.json"
 
 
 @pytest.fixture(scope='session')
 def browser():
-    driver = Factory().get_browser()
+    data = ReadFile.read_file(CONFIG_PATH)
+    driver = Factory().get_browser(data)
     driver.implicitly_wait(IMPLICITLY_WAIT_TIME)
     driver.maximize_window()
     yield driver
     driver.quit()
 
 
-@pytest.fixture(scope='session')
-def config():
-    data = read_file('tests/config.json')
-    return data

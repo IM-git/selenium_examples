@@ -13,7 +13,7 @@ class TestPracticeForm:
 
     @staticmethod
     # @Logger.logger.catch()
-    def test_practice_form_page_right(browser, config):
+    def test_practice_form_page_right(browser):
         practice_form_page = PracticeFormPage()
         open_practice_form_page = practice_form_page.open_page(
             browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
@@ -83,7 +83,7 @@ class TestPracticeForm:
 
     @staticmethod
     # @Logger.logger.catch()
-    def test_practice_form_page_failed(browser, config):
+    def test_practice_form_page_failed(browser):
         print(browser)
         practice_form_page = PracticeFormPage()
         open_practice_form_page = practice_form_page.open_page(

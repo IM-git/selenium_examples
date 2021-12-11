@@ -7,7 +7,7 @@ from tools.RandomName import RandomName
 
 
 # @Logger.logger.catch()
-def test_alerts_page(browser, config):
+def test_alerts_page(browser):
     alerts_page = AlertsPage()
     open_main_page = alerts_page.open_page(browser, Alerts.LINK)
     get_title_alerts_page = alerts_page.get_title(browser)

@@ -5,7 +5,7 @@ from tools import Logger
 
 
 # @Logger.logger.catch()
-def test_main_page(browser, config):
+def test_main_page(browser):
     main_page = MainPage()
     open_site_demoqa = main_page.open_page(browser, Main.LINK)
     get_title_demoqa = main_page.get_title(browser)

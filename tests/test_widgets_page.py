@@ -9,7 +9,7 @@ class TestWidgets:
 
     @staticmethod
     # @Logger.logger.catch()
-    def test_slider(browser, config):
+    def test_slider(browser):
         widgets_page = WidgetsPage.Slider()
         open_slider_page = widgets_page.open_page(
             browser, Widgets.LINK_SLIDER_PAGE)
@@ -30,7 +30,7 @@ class TestWidgets:
 
     @staticmethod
     # @Logger.logger.catch()
-    def test_progress_bar(browser, config):
+    def test_progress_bar(browser):
         widgets_page = WidgetsPage.ProgressBar()
         open_progress_bar = widgets_page.open_page(
             browser, Widgets.LINK_PROGRESS_BAR_PAGE)

@@ -1,25 +1,19 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from tools import read_file
 
 
 class Factory:
 
     @staticmethod
-    def get_browser():
-        config = Factory.config()
+    def get_browser(configuration):
+        config = configuration
         if config['browser'] == 'chrome':
             return Factory.chrome_browser()
         elif config['browser'] == 'firefox':
             return Factory.firefox_browser()
         else:
-            raise Exception(f' We are not use the "{Factory.config_browser}".')
-
-    @staticmethod
-    def config():
-        data = read_file.read_file('tests/config.json')
-        return data
+            raise Exception(f' We are not use the "{Factory.config_browser(config)}".')
 
     @staticmethod
     def chrome_browser():

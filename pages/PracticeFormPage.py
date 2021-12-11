@@ -3,7 +3,6 @@ from selenium import webdriver
 from pages import BasePage
 from tools.CheckingDateBirth import CheckingDateBirth
 from tools.ChoiceHobbies import ChoiceHobbies
-from tools.ChoiceGender import ChoiceGender
 from selenium.webdriver.common.by import By
 from tools.MouseKeyboardActions import MouseKeyboardActions
 from tools import Logger
