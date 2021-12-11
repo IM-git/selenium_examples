@@ -44,10 +44,8 @@ class TestPracticeForm:
             PracticeForm.SUBJECTS_ENGLISH)
         get_subject_text_values = practice_form_page.get_text(
             browser, By.XPATH, PracticeForm.ID_SUBJECT_CONTAINER)
-        choice_hobbies_reading = practice_form_page.click_value(
-            browser, By.XPATH, PracticeForm.ID_HOBIE_READING)
-        choice_hobbies_music = practice_form_page.click_value(
-            browser, By.XPATH, PracticeForm.ID_HOBIE_MUSIC)
+        choice_hobbies = practice_form_page.click_hobbies(
+            browser, By.XPATH, PracticeForm.LIST_ID_HOBBIES)
         scroll_down =\
             [practice_form_page.click_arrow_down(browser) for _ in range(8)]
         enter_image = practice_form_page.enter_path(
@@ -84,26 +82,21 @@ class TestPracticeForm:
     @staticmethod
     # @Logger.logger.catch()
     def test_practice_form_page_failed(browser):
-        print(browser)
         practice_form_page = PracticeFormPage()
         open_practice_form_page = practice_form_page.open_page(
             browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
         check_is_displayed_practice_form_page = practice_form_page. \
             check_is_displayed(
             browser, By.XPATH, PracticeForm.ID_BUTTON_SUBMIT)
-
         enter_email = practice_form_page.enter_value(
             browser, By.XPATH, PracticeForm.ID_EMAIL, PracticeForm.EMAIL)
-
         enter_date_of_birth = practice_form_page.enter_date_of_birth(
             browser, By.XPATH, PracticeForm.ID_DATE_OF_BIRTH,
             PracticeForm.DATE_OF_BIRTH)
         get_subject_text_values = practice_form_page.get_text(
             browser, By.XPATH, PracticeForm.ID_SUBJECT_CONTAINER)
-        choice_hobbies_reading = practice_form_page.click_value(
-            browser, By.XPATH, PracticeForm.ID_HOBIE_READING)
-        choice_hobbies_music = practice_form_page.click_value(
-            browser, By.XPATH, PracticeForm.ID_HOBIE_MUSIC)
+        choice_hobbies = practice_form_page.click_hobbies(
+            browser, By.XPATH, PracticeForm.LIST_ID_HOBBIES)
         scroll_down = \
             [practice_form_page.click_arrow_down(browser) for _ in range(8)]
         enter_image = practice_form_page.enter_path(

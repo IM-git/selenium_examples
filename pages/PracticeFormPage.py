@@ -59,3 +59,8 @@ class PracticeFormPage(BasePage):
     def click_arrow_down(self, browser):
         Logger.Logger().info(f"Click arrow down.")
         return MouseKeyboardActions()._click_arrow_down(browser)
+
+# CLICK HOBBIES
+    def click_hobbies(self, browser, locator, elements):
+        for element in elements:
+            self.click_value(browser, locator, element)

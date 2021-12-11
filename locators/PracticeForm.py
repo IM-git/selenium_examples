@@ -1,4 +1,5 @@
 from tools.ChoiceGender import ChoiceGender
+from tools.ChoiceHobbies import ChoiceHobbies
 
 
 class PracticeForm:
@@ -27,9 +28,10 @@ class PracticeForm:
     ID_SUBJECT = '//input[@id="subjectsInput"]'
     ID_SUBJECT_CONTAINER = '//div[@id="subjectsContainer"]'
     # ID_SUBJECT = '//div[contains(@class,"subjects-auto-complete__control")]'
-    ID_HOBIE_SPORTS = '//input[@id="hobbies-checkbox-1"]'
-    ID_HOBIE_READING = '//input[@id="hobbies-checkbox-2"]'
-    ID_HOBIE_MUSIC = '//input[@id="hobbies-checkbox-3"]'
+    ID_HOBBY_SPORTS = '//input[@id="hobbies-checkbox-1"]'
+    ID_HOBBY_READING = '//input[@id="hobbies-checkbox-2"]'
+    ID_HOBBY_MUSIC = '//input[@id="hobbies-checkbox-3"]'
+    LIST_ID_HOBBIES = ChoiceHobbies().get_hobbies()
     ID_CHOICE_IMG = '//input[@id="uploadPicture"]'
     ID_CURRENT_ADDRESS = '//textarea[@id="currentAddress"]'
     DIV_SELECT_STATE = '//div[@id="state"]'
