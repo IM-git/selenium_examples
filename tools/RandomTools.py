@@ -12,7 +12,8 @@ class RandomTools:
         @staticmethod
         def get_random_string(length):
             letters = string.ascii_lowercase
-            rand_string = ''.join(random.choice(letters) for i in range(length))
+            rand_string = ''.join(
+                random.choice(letters) for _ in range(length))
             return rand_string
 
         @staticmethod
@@ -27,9 +28,11 @@ class RandomTools:
         def do_random_steps(value):     # Generate random quantity steps
             random_way = random.randint(1, 2)
             if random_way == 2:
-                return RandomTools.Steps.make_steps(value, start=0, end=75, side=Keys.ARROW_RIGHT)
+                return RandomTools.Steps.make_steps(
+                    value, start=0, end=75, side=Keys.ARROW_RIGHT)
             else:
-                return RandomTools.Steps.make_steps(value, start=0, end=25, side=Keys.ARROW_LEFT)
+                return RandomTools.Steps.make_steps(
+                    value, start=0, end=25, side=Keys.ARROW_LEFT)
 
         @staticmethod
         def make_steps(value, start, end, side):

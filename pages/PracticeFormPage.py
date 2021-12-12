@@ -6,6 +6,7 @@ from tools.ChoiceHobbies import ChoiceHobbies
 from selenium.webdriver.common.by import By
 from tools.MouseKeyboardActions import MouseKeyboardActions
 from tools import Logger
+from tools.RandomTools import RandomTools
 
 
 class PracticeFormPage(BasePage):
@@ -19,7 +20,8 @@ class PracticeFormPage(BasePage):
         MouseKeyboardActions()._enter_text(browser, name)
 
     def enter_date_of_birth(self, browser, locator, element, date):
-        Logger.Logger().info(f"Enter date of birth(Element: {element}, date: {date}).")
+        Logger.Logger().info(
+            f"Enter date of birth(Element: {element}, date: {date}).")
         CheckingDateBirth()
         value = self.base_element._find_element(
             browser, locator, element)
@@ -28,13 +30,16 @@ class PracticeFormPage(BasePage):
             _select_all_text(browser, value)
         MouseKeyboardActions()._enter_text(browser, date)
 
-    def enter_subject(self, browser, locator, element, subject):
-        Logger.Logger().info(f"Enter subject(Element: {element}, subject: {subject}).")
+    def enter_subjects(self, browser, locator, element, subjects):
+        Logger.Logger().info(
+            f"Enter subject(Element: {element}, subject: {subjects}).")
         value = self.base_element._find_element(browser, locator, element)
         self.wait_element_to_be_clickable(browser, value)
-        click = self.base_element._click(value)
-        MouseKeyboardActions()._enter_text(browser, subject)
-        self.wait_element_to_be_clickable(browser, value)
+        for subject in subjects:
+            click = self.base_element._click(value)
+            MouseKeyboardActions()._enter_text(browser, subject)
+            self.wait_element_to_be_clickable(browser, value)
+            MouseKeyboardActions()._click_tab(browser)
         MouseKeyboardActions()._click_tab(browser)
 
     def enter_path(self, browser, locator, element, path):

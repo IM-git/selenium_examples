@@ -1,5 +1,6 @@
 from tools.ChoiceGender import ChoiceGender
 from tools.ChoiceHobbies import ChoiceHobbies
+from tools.ChoiceSubjects import ChoiceSubjects
 
 
 class PracticeForm:
@@ -12,6 +13,10 @@ class PracticeForm:
     DATE_OF_BIRTH = '11 Nov 2011'
     SUBJECTS_COMPUTER_SCIENCE = 'Computer Science'
     SUBJECTS_ENGLISH = 'English'
+    SUBJECTS_OLD = ['English', 'Computer Science', 'Chemistry', 'Commerce',
+                'Economics', 'Social Studies', 'Maths', 'Physics', 'Arts',
+                'History', 'Civics']
+    SUBJECTS = ChoiceSubjects().list_of_selected_subjects()
     PATH_TO_IMG = r"\img.png"
     TEXT_CURRENT_ADDRESS = '890 Fifth Avenue, Manhattan, New York.'
     STATE = 'Haryana'

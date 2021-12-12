@@ -36,12 +36,9 @@ class TestPracticeForm:
         enter_date_of_birth = practice_form_page.enter_date_of_birth(
             browser, By.XPATH, PracticeForm.ID_DATE_OF_BIRTH,
             PracticeForm.DATE_OF_BIRTH)
-        enter_subject_computer_science = practice_form_page.enter_subject(
+        enter_subjects = practice_form_page.enter_subjects(
             browser, By.XPATH, PracticeForm.ID_SUBJECT,
-            PracticeForm.SUBJECTS_COMPUTER_SCIENCE)
-        enter_subject_english = practice_form_page.enter_subject(
-            browser, By.XPATH, PracticeForm.ID_SUBJECT,
-            PracticeForm.SUBJECTS_ENGLISH)
+            PracticeForm.SUBJECTS)
         get_subject_text_values = practice_form_page.get_text(
             browser, By.XPATH, PracticeForm.ID_SUBJECT_CONTAINER)
         choice_hobbies = practice_form_page.click_hobbies(
@@ -74,10 +71,8 @@ class TestPracticeForm:
             "The modal body is not loaded!!"
         assert get_attribute == "was-validated", \
             "Submit button is not pushed!!"
-        assert PracticeForm.SUBJECTS_COMPUTER_SCIENCE and\
-            PracticeForm.SUBJECTS_ENGLISH in get_subject_text_values,\
-            f'{PracticeForm.SUBJECTS_COMPUTER_SCIENCE} and' \
-            f'{PracticeForm.SUBJECTS_ENGLISH} are not added in form!!'
+        assert PracticeForm.SUBJECTS == get_subject_text_values.split('\n'), \
+            f'{PracticeForm.SUBJECTS} are not added in form!!'
 
     @staticmethod
     # @Logger.logger.catch()
