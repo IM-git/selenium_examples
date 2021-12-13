@@ -3,6 +3,7 @@ import requests
 from pages import AlertsPage
 from selenium.webdriver.common.by import By
 from locators import Alerts
+from src.enums import GlobalErrorMessages, AlertsError
 from tools import Logger
 from tools.RandomName import RandomName
 
@@ -86,31 +87,34 @@ def test_alerts_page(browser):
     get_prompt_result_text_ok = alerts_page.get_text(
         browser, By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
 
-    assert page_response.status_code == 200, "Received status code is not equal to expected!!"
-    assert get_title_alerts_page == "ToolsQA", "Another page is opened!"
+    assert page_response.status_code == 200,\
+        GlobalErrorMessages.WRONG_STATUS_CODE
+    assert get_title_alerts_page == "ToolsQA",\
+        GlobalErrorMessages.WRONG_TITLE_PAGE
     assert check_is_displayed_alerts_button == True,\
-        "The page is not loaded!!"
+        GlobalErrorMessages.WRONG_IS_DISPLAYED
     assert get_alert_text == 'You clicked a button',\
-        "Alert not displayed!!"
+        AlertsError.WRONG_ALERT_TEXT
     assert get_alert_text_appear_5_seconds ==\
-           'This alert appeared after 5 seconds', "Alert not displayed!!"
+           'This alert appeared after 5 seconds', AlertsError.WRONG_ALERT_TEXT
     assert get_alert_text_witch_confirm_box_ok == 'Do you confirm action?',\
-        "Alert not displayed!!"
+        AlertsError.WRONG_ALERT_TEXT
     assert get_confirm_result_text_ok == 'You selected Ok',\
-        'The answer does not match after clicking "Ok"!!'
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK
     assert get_alert_text_witch_confirm_box_cancel ==\
-           'Do you confirm action?', "Alert not displayed!!"
+           'Do you confirm action?', AlertsError.WRONG_ALERT_TEXT
     assert get_confirm_result_text_cancel == 'You selected Cancel', \
-        'The answer does not match after clicking "Cancel"!!'
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_CANCEL
     assert get_alert_text_witch_prompt_box_empty_ok ==\
-           'Please enter your name', "Alert not displayed!!"
+           'Please enter your name', AlertsError.WRONG_ALERT_TEXT
     assert check_is_displayed_prompt_text_ok == True, \
-        'The answer text do not exists after clicking "Ok"!!'
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK
     assert get_alert_text_witch_prompt_box_cancel ==\
-           'Please enter your name', "Alert not displayed!!"
+           'Please enter your name', AlertsError.WRONG_ALERT_TEXT
     assert check_is_displayed_prompt_text_cancel == True, \
-        'The answer text do not exists after clicking "Cancel"!!'
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_CANCEL
     assert get_alert_text_witch_prompt_box_ok == 'Please enter your name', \
-        "Alert not displayed!!"
-    assert get_prompt_result_text_ok == f'You entered {Alerts.ENTER_NAME_IN_ALERT_PROMPT}', \
-        'The answer does not match after clicking "Ok"!!'
+        AlertsError.WRONG_ALERT_TEXT
+    assert get_prompt_result_text_ok ==\
+           f'You entered {Alerts.ENTER_NAME_IN_ALERT_PROMPT}', \
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK

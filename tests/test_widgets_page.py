@@ -3,6 +3,7 @@ import requests
 from selenium.webdriver.common.by import By
 from pages import WidgetsPage
 from locators import Widgets
+from src.enums import GlobalErrorMessages, WidgetsPageError
 from tools import Logger
 
 
@@ -25,12 +26,11 @@ class TestWidgets:
             browser, By.XPATH, Widgets.VALUE_SLIDER)
 
         assert page_response.status_code == 200,\
-            "Received status code is not equal to expected!!"
+            GlobalErrorMessages.WRONG_STATUS_CODE
         assert check_is_displayed_slider == True, \
-            "The page is not loaded!!"
+            GlobalErrorMessages.WRONG_IS_DISPLAYED
         assert do_random_steps == checking_slider_value,\
-            "The steps which were did is not match the" \
-            "displayed value steps on the page"
+            WidgetsPageError.WRONG_DID_RANDOM_STEPS
 
     @staticmethod
     # @Logger.logger.catch()
@@ -54,8 +54,8 @@ class TestWidgets:
             browser, By.XPATH, Widgets.VALUE_PROGRESS_BAR)
 
         assert page_response.status_code == 200,\
-            "Received status code is not equal to expected!!"
+            GlobalErrorMessages.WRONG_STATUS_CODE
         assert check_is_displayed_reset_button == True,\
-            "The page is not loaded!!"
+            GlobalErrorMessages.WRONG_IS_DISPLAYED
         assert wait_while_progress_bar_became in get_value_progress_bar,\
-            "Entered value isn't match with value in the page!!"
+            WidgetsPageError.WRONG_ENTERED_VALUE_IN_PAGE

@@ -2,6 +2,7 @@ import requests
 from pages import MainPage
 from selenium.webdriver.common.by import By
 from locators import Main
+from src.enums import GlobalErrorMessages
 from tools import Logger
 
 
@@ -16,6 +17,6 @@ def test_main_page(browser):
     check_is_displayed_element_img = main_page.check_is_displayed(
         browser, By.XPATH, Main.ELEMENT_IMG)
 
-    assert page_response.status_code == 200, "Received status code is not equal to expected!!"
-    assert get_title_demoqa == "ToolsQA", "Another page is opened!"
-    assert check_is_displayed_element_img == True, "The page is not loaded!"
+    assert page_response.status_code == 200, GlobalErrorMessages.WRONG_STATUS_CODE
+    assert get_title_demoqa == "ToolsQA", GlobalErrorMessages.WRONG_TITLE_PAGE
+    assert check_is_displayed_element_img == True, GlobalErrorMessages.WRONG_IS_DISPLAYED

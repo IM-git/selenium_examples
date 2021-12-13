@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from locators import PracticeForm
 from pages import PracticeFormPage
+from src.enums import GlobalErrorMessages, PracticeFormPageError
 from tools import Logger
 
 
@@ -68,15 +69,16 @@ class TestPracticeForm:
             browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
         assert page_response.status_code == 200,\
-            "Received status code is not equal to expected!!"
-        assert check_is_displayed_practice_form_page == True, \
-                    "The page is not loaded!!"
+            GlobalErrorMessages.WRONG_STATUS_CODE
+        assert check_is_displayed_practice_form_page == True,\
+            GlobalErrorMessages.WRONG_IS_DISPLAYED
         assert check_is_displayed_modal_body == True, \
-            "The modal body is not loaded!!"
+            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY
         assert get_attribute == "was-validated", \
-            "Submit button is not pushed!!"
+            PracticeFormPageError.WRONG_GET_ATTRIBUTE
         assert PracticeForm.SUBJECTS == get_subject_text_values.split('\n'), \
-            f'{PracticeForm.SUBJECTS} are not added in form!!'
+            f'{PracticeForm.SUBJECTS} ' \
+            f'{PracticeFormPageError.WRONG_PRACTICE_FORM_SUBJECT}'
 
     @staticmethod
     # @Logger.logger.catch()
@@ -120,11 +122,12 @@ class TestPracticeForm:
             browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
         assert page_response.status_code == 200, \
-            "Received status code is not equal to expected!!"
+            GlobalErrorMessages.WRONG_STATUS_CODE
         assert check_is_displayed_practice_form_page == True, \
-            "The page is not loaded!!"
+            GlobalErrorMessages.WRONG_IS_DISPLAYED
         assert check_is_displayed_modal_body == False, \
-            "The modal body is loaded!!"
+            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY
         assert get_attribute == "was-validated",\
-            "Submit button is not pushed!!"
-        assert get_subject_text_values == '', 'Some text exist!!'
+            PracticeFormPageError.WRONG_GET_ATTRIBUTE
+        assert get_subject_text_values == '',\
+            PracticeFormPageError.WRONG_SUBJECT_TEXT
