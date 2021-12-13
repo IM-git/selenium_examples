@@ -1,4 +1,5 @@
 import time
+import requests
 from pages import AlertsPage
 from selenium.webdriver.common.by import By
 from locators import Alerts
@@ -9,6 +10,7 @@ from tools.RandomName import RandomName
 # @Logger.logger.catch()
 def test_alerts_page(browser):
     alerts_page = AlertsPage()
+    page_response = requests.get(url=Alerts.LINK)
     open_main_page = alerts_page.open_page(browser, Alerts.LINK)
     get_title_alerts_page = alerts_page.get_title(browser)
     wait_while_loaded_alerts_page = alerts_page.\
@@ -84,6 +86,7 @@ def test_alerts_page(browser):
     get_prompt_result_text_ok = alerts_page.get_text(
         browser, By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
 
+    assert page_response.status_code == 200, "Received status code is not equal to expected!!"
     assert get_title_alerts_page == "ToolsQA", "Another page is opened!"
     assert check_is_displayed_alerts_button == True,\
         "The page is not loaded!!"

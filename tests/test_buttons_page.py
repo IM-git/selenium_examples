@@ -1,3 +1,4 @@
+import requests
 from pages import ButtonsPage
 from locators import Buttons
 from selenium.webdriver.common.by import By
@@ -7,6 +8,7 @@ from tools import Logger
 # @Logger.logger.catch()
 def test_buttons_page(browser):
     buttons_page = ButtonsPage()
+    page_response = requests.get(url=Buttons.LINK)
     open_buttons_page = buttons_page.open_page(browser, Buttons.LINK)
     get_title_buttons_page = buttons_page.get_title(browser)
     wait_while_loaded_buttons_page = buttons_page. \
@@ -34,6 +36,7 @@ def test_buttons_page(browser):
     get_click_result_text = buttons_page.get_text(
         browser, By.XPATH, Buttons.GET_CLICK_RESULT_TEXT)
 
+    assert page_response.status_code == 200, "Received status code is not equal to expected!!"
     assert get_title_buttons_page == "ToolsQA", "Another page is opened!"
     assert check_is_displayed_double_click_button == True,\
         "The page is not loaded!!"

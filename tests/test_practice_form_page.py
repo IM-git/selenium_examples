@@ -1,6 +1,7 @@
 import os
 import time
 import pyautogui
+import requests
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -15,6 +16,7 @@ class TestPracticeForm:
     # @Logger.logger.catch()
     def test_practice_form_page_right(browser):
         practice_form_page = PracticeFormPage()
+        page_response = requests.get(url=PracticeForm.LINK_PRACTICE_FORM_PAGE)
         open_practice_form_page = practice_form_page.open_page(
             browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
         check_is_displayed_practice_form_page = practice_form_page.\
@@ -65,6 +67,8 @@ class TestPracticeForm:
         get_attribute = practice_form_page.get_attribute(
             browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
+        assert page_response.status_code == 200,\
+            "Received status code is not equal to expected!!"
         assert check_is_displayed_practice_form_page == True, \
                     "The page is not loaded!!"
         assert check_is_displayed_modal_body == True, \
@@ -78,6 +82,7 @@ class TestPracticeForm:
     # @Logger.logger.catch()
     def test_practice_form_page_failed(browser):
         practice_form_page = PracticeFormPage()
+        page_response = requests.get(url=PracticeForm.LINK_PRACTICE_FORM_PAGE)
         open_practice_form_page = practice_form_page.open_page(
             browser, PracticeForm.LINK_PRACTICE_FORM_PAGE)
         check_is_displayed_practice_form_page = practice_form_page. \
@@ -114,6 +119,8 @@ class TestPracticeForm:
         get_attribute = practice_form_page.get_attribute(
             browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
+        assert page_response.status_code == 200, \
+            "Received status code is not equal to expected!!"
         assert check_is_displayed_practice_form_page == True, \
             "The page is not loaded!!"
         assert check_is_displayed_modal_body == False, \
