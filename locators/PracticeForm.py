@@ -10,7 +10,7 @@ class PracticeForm:
     LAST_NAME = 'Userkov'
     EMAIL = 'example@email.com'
     MOBILE_NUMBER = '1234567890'
-    DATE_OF_BIRTH = '11 Nov 2011'
+    DATE_OF_BIRTH = '15 Dec 2011'
     SUBJECTS_COMPUTER_SCIENCE = 'Computer Science'
     SUBJECTS_ENGLISH = 'English'
     SUBJECTS_OLD = ['English', 'Computer Science', 'Chemistry', 'Commerce',

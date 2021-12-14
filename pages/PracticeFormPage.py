@@ -22,7 +22,9 @@ class PracticeFormPage(BasePage):
     def enter_date_of_birth(self, browser, locator, element, date):
         Logger.Logger().info(
             f"Enter date of birth(Element: {element}, date: {date}).")
-        CheckingDateBirth()
+        __minimum_age = 10
+        checking_date_birth = CheckingDateBirth().compare_date(
+            date, __minimum_age)
         value = self.base_element._find_element(
             browser, locator, element)
         click = self.base_element._click(value)
