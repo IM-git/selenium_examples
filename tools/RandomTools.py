@@ -21,6 +21,10 @@ class RandomTools:
             num = random.randint(4, 8)
             return RandomTools.String.get_random_string(num)
 
+        @staticmethod
+        def get_random_password(length=8, chars=string.ascii_letters + string.digits):
+            return ''.join([random.choice(chars) for i in range(length)])
+
     # CREATED RANDOM STEPS
     class Steps:
 
@@ -52,4 +56,3 @@ class RandomTools:
             quantity = len(values) - 1
             num = random.randint(0, quantity)
             return values[num]
-

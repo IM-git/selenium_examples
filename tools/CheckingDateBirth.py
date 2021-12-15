@@ -20,7 +20,7 @@ MONTH_LIST = {"Jan": 1,
 class CheckingDateBirth:
 
     def get_today_date(self):
-        return TODAY_DATE
+        return datetime.datetime.today().strftime("%d %b %Y")
 
     def compare_date(self, date, minimum_age=6):
         __date_entered = date.split(' ')
