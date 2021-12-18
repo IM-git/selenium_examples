@@ -88,33 +88,34 @@ def test_alerts_page(browser):
         browser, By.XPATH, Alerts.GET_PROMPT_RESULT_TEXT)
 
     assert page_response.status_code == 200,\
-        GlobalErrorMessages.WRONG_STATUS_CODE
+        GlobalErrorMessages.WRONG_STATUS_CODE.value
     assert get_title_alerts_page == "ToolsQA",\
-        GlobalErrorMessages.WRONG_TITLE_PAGE
+        GlobalErrorMessages.WRONG_TITLE_PAGE.value
     assert check_is_displayed_alerts_button == True,\
-        GlobalErrorMessages.WRONG_IS_DISPLAYED
+        GlobalErrorMessages.WRONG_IS_DISPLAYED.value
     assert get_alert_text == 'You clicked a button',\
-        AlertsError.WRONG_ALERT_TEXT
-    assert get_alert_text_appear_5_seconds ==\
-           'This alert appeared after 5 seconds', AlertsError.WRONG_ALERT_TEXT
+        AlertsError.WRONG_ALERT_TEXT.value
+    assert get_alert_text_appear_5_seconds == \
+           'This alert appeared after 5 seconds', \
+        AlertsError.WRONG_ALERT_TEXT.value
     assert get_alert_text_witch_confirm_box_ok == 'Do you confirm action?',\
-        AlertsError.WRONG_ALERT_TEXT
+        AlertsError.WRONG_ALERT_TEXT.value
     assert get_confirm_result_text_ok == 'You selected Ok',\
-        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK.value
     assert get_alert_text_witch_confirm_box_cancel ==\
-           'Do you confirm action?', AlertsError.WRONG_ALERT_TEXT
+           'Do you confirm action?', AlertsError.WRONG_ALERT_TEXT.value
     assert get_confirm_result_text_cancel == 'You selected Cancel', \
-        AlertsError.WRONG_CONFIRM_RESULT_TEXT_CANCEL
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_CANCEL.value
     assert get_alert_text_witch_prompt_box_empty_ok ==\
-           'Please enter your name', AlertsError.WRONG_ALERT_TEXT
+           'Please enter your name', AlertsError.WRONG_ALERT_TEXT.value
     assert check_is_displayed_prompt_text_ok == True, \
-        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK.value
     assert get_alert_text_witch_prompt_box_cancel ==\
-           'Please enter your name', AlertsError.WRONG_ALERT_TEXT
+           'Please enter your name', AlertsError.WRONG_ALERT_TEXT.value
     assert check_is_displayed_prompt_text_cancel == True, \
         AlertsError.WRONG_CONFIRM_RESULT_TEXT_CANCEL
     assert get_alert_text_witch_prompt_box_ok == 'Please enter your name', \
-        AlertsError.WRONG_ALERT_TEXT
+        AlertsError.WRONG_ALERT_TEXT.value
     assert get_prompt_result_text_ok ==\
            f'You entered {Alerts.ENTER_NAME_IN_ALERT_PROMPT}', \
-        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK
+        AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK.value

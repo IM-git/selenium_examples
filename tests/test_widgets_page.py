@@ -26,11 +26,11 @@ class TestWidgets:
             browser, By.XPATH, Widgets.VALUE_SLIDER)
 
         assert page_response.status_code == 200,\
-            GlobalErrorMessages.WRONG_STATUS_CODE
+            GlobalErrorMessages.WRONG_STATUS_CODE.value
         assert check_is_displayed_slider == True, \
-            GlobalErrorMessages.WRONG_IS_DISPLAYED
+            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
         assert do_random_steps == checking_slider_value,\
-            WidgetsPageError.WRONG_DID_RANDOM_STEPS
+            WidgetsPageError.WRONG_DID_RANDOM_STEPS.value
 
     @staticmethod
     # @Logger.logger.catch()
@@ -54,8 +54,8 @@ class TestWidgets:
             browser, By.XPATH, Widgets.VALUE_PROGRESS_BAR)
 
         assert page_response.status_code == 200,\
-            GlobalErrorMessages.WRONG_STATUS_CODE
+            GlobalErrorMessages.WRONG_STATUS_CODE.value
         assert check_is_displayed_reset_button == True,\
-            GlobalErrorMessages.WRONG_IS_DISPLAYED
+            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
         assert wait_while_progress_bar_became in get_value_progress_bar,\
-            WidgetsPageError.WRONG_ENTERED_VALUE_IN_PAGE
+            WidgetsPageError.WRONG_ENTERED_VALUE_IN_PAGE.value

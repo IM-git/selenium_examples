@@ -17,6 +17,9 @@ def test_main_page(browser):
     check_is_displayed_element_img = main_page.check_is_displayed(
         browser, By.XPATH, Main.ELEMENT_IMG)
 
-    assert page_response.status_code == 200, GlobalErrorMessages.WRONG_STATUS_CODE
-    assert get_title_demoqa == "ToolsQA", GlobalErrorMessages.WRONG_TITLE_PAGE
-    assert check_is_displayed_element_img == True, GlobalErrorMessages.WRONG_IS_DISPLAYED
+    assert page_response.status_code == 200, \
+        GlobalErrorMessages.WRONG_STATUS_CODE.value
+    assert get_title_demoqa == "ToolsQA", \
+        GlobalErrorMessages.WRONG_TITLE_PAGE.value
+    assert check_is_displayed_element_img == True, \
+        GlobalErrorMessages.WRONG_IS_DISPLAYED.value

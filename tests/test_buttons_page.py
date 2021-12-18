@@ -37,13 +37,15 @@ def test_buttons_page(browser):
     get_click_result_text = buttons_page.get_text(
         browser, By.XPATH, Buttons.GET_CLICK_RESULT_TEXT)
 
-    assert page_response.status_code == 200, GlobalErrorMessages.WRONG_STATUS_CODE
-    assert get_title_buttons_page == "ToolsQA", GlobalErrorMessages.WRONG_TITLE_PAGE
+    assert page_response.status_code == 200, \
+        GlobalErrorMessages.WRONG_STATUS_CODE.value
+    assert get_title_buttons_page == "ToolsQA", \
+        GlobalErrorMessages.WRONG_TITLE_PAGE.value
     assert check_is_displayed_double_click_button == True,\
-        GlobalErrorMessages.WRONG_IS_DISPLAYED
+        GlobalErrorMessages.WRONG_IS_DISPLAYED.value
     assert get_double_click_result_text == 'You have done a double click', \
-        ButtonsError.WRONG_ANSWER_AFTER_DOUBLE_CLICK
+        ButtonsError.WRONG_ANSWER_AFTER_DOUBLE_CLICK.value
     assert get_right_click_result_text == 'You have done a right click', \
-        ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK
+        ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value
     assert get_click_result_text == 'You have done a dynamic click', \
-        ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK
+        ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value

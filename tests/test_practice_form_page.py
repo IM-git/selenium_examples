@@ -69,16 +69,16 @@ class TestPracticeForm:
             browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
         assert page_response.status_code == 200,\
-            GlobalErrorMessages.WRONG_STATUS_CODE
+            GlobalErrorMessages.WRONG_STATUS_CODE.value
         assert check_is_displayed_practice_form_page == True,\
-            GlobalErrorMessages.WRONG_IS_DISPLAYED
+            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
         assert check_is_displayed_modal_body == True, \
-            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY
+            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY.value
         assert get_attribute == "was-validated", \
-            PracticeFormPageError.WRONG_GET_ATTRIBUTE
+            PracticeFormPageError.WRONG_GET_ATTRIBUTE.value
         assert PracticeForm.SUBJECTS == get_subject_text_values.split('\n'), \
             f'{PracticeForm.SUBJECTS} ' \
-            f'{PracticeFormPageError.WRONG_PRACTICE_FORM_SUBJECT}'
+            f'{PracticeFormPageError.WRONG_PRACTICE_FORM_SUBJECT.value}'
 
     @staticmethod
     # @Logger.logger.catch()
@@ -122,12 +122,12 @@ class TestPracticeForm:
             browser, By.XPATH, PracticeForm.USER_FORM, 'class')
 
         assert page_response.status_code == 200, \
-            GlobalErrorMessages.WRONG_STATUS_CODE
+            GlobalErrorMessages.WRONG_STATUS_CODE.value
         assert check_is_displayed_practice_form_page == True, \
-            GlobalErrorMessages.WRONG_IS_DISPLAYED
+            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
         assert check_is_displayed_modal_body == False, \
-            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY
+            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY.value
         assert get_attribute == "was-validated",\
-            PracticeFormPageError.WRONG_GET_ATTRIBUTE
+            PracticeFormPageError.WRONG_GET_ATTRIBUTE.value
         assert get_subject_text_values == '',\
-            PracticeFormPageError.WRONG_SUBJECT_TEXT
+            PracticeFormPageError.WRONG_SUBJECT_TEXT.value
