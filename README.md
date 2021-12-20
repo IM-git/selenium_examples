@@ -5,7 +5,7 @@ This is my first version of the test framework.
 
 Tests are performed for the site: www.demoqa.com
 
-Pages that is tested:
+Pages that are tested:
  + https://demoqa.com/
  + https://demoqa.com/alerts
  + https://demoqa.com/buttons
