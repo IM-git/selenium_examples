@@ -17,7 +17,7 @@ class Factory:
 
     @staticmethod
     def chrome_browser():
-        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
         return driver
 
     @staticmethod

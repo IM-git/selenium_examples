@@ -1,11 +1,11 @@
 FROM python:3.10
 
-RUN mkdir -p /usr/src/app/
+RUN mkdir -p /selenium_examples/
 
-WORKDIR /usr/src/app/
+WORKDIR /selenium_examples/
 
-COPY . /usr/src/app/
+COPY . /selenium_examples/
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "tests/test_practice_form_page.py"]
+CMD ["python", "test_practice_form_page.py"]
