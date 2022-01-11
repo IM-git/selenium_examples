@@ -8,4 +8,4 @@ COPY . /selenium_examples/
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "test_practice_form_page.py"]
+CMD pytest -s -v ./tests/ --alluredir=allureress

@@ -3,3 +3,4 @@ geckodriver.exe
 .idea
 venv
 .pytest_cache
+allureress
