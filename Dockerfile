@@ -8,4 +8,4 @@ COPY . /selenium_examples/
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD pytest -s -v ./tests/ --alluredir=allureress
+CMD pytest -s -v ./tests/
