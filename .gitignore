@@ -4,3 +4,4 @@ geckodriver.exe
 venv
 .pytest_cache
 allureress
+debug.json
