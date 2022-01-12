@@ -1,17 +1,21 @@
 import time
+import allure
 import requests
 from selenium.webdriver.common.by import By
 from pages import WidgetsPage
 from locators import Widgets
 from src.enums import GlobalErrorMessages, WidgetsPageError
 from tools import Logger
+from tools.allure_screenshot import AllureScreenshot
 
 
 class TestWidgets:
 
     @staticmethod
     # @Logger.logger.catch()
+    @allure.feature("Slider.")
     def test_slider(browser):
+        """Checking correct operation a slider on the widgets page."""
         widgets_page = WidgetsPage.Slider()
         page_response = requests.get(url=Widgets.LINK_SLIDER_PAGE)
         open_slider_page = widgets_page.open_page(
@@ -32,9 +36,13 @@ class TestWidgets:
         assert do_random_steps == checking_slider_value,\
             WidgetsPageError.WRONG_DID_RANDOM_STEPS.value
 
+        taking_screenshot = AllureScreenshot().make_screenshot(browser)
+
     @staticmethod
     # @Logger.logger.catch()
+    @allure.feature("Progress bar.")
     def test_progress_bar(browser):
+        """Checking correct operation a progress bar on the widgets page."""
         widgets_page = WidgetsPage.ProgressBar()
         page_response = requests.get(url=Widgets.LINK_PROGRESS_BAR_PAGE)
         open_progress_bar = widgets_page.open_page(
@@ -59,3 +67,5 @@ class TestWidgets:
             GlobalErrorMessages.WRONG_IS_DISPLAYED.value
         assert wait_while_progress_bar_became in get_value_progress_bar,\
             WidgetsPageError.WRONG_ENTERED_VALUE_IN_PAGE.value
+
+        taking_screenshot = AllureScreenshot().make_screenshot(browser)

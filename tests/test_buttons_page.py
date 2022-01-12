@@ -1,13 +1,18 @@
 import requests
+import allure
 from pages import ButtonsPage
 from locators import Buttons
 from selenium.webdriver.common.by import By
 from src.enums import GlobalErrorMessages, ButtonsError
 from tools import Logger
+from tools.allure_screenshot import AllureScreenshot
 
 
+@allure.feature("Buttons page.")
 # @Logger.logger.catch()
 def test_buttons_page(browser):
+    """Checking buttons page. Clicking all buttons and
+        expect for correct operation of them"""
     buttons_page = ButtonsPage()
     page_response = requests.get(url=Buttons.LINK)
     open_buttons_page = buttons_page.open_page(browser, Buttons.LINK)
@@ -49,3 +54,5 @@ def test_buttons_page(browser):
         ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value
     assert get_click_result_text == 'You have done a dynamic click', \
         ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value
+
+    taking_screenshot = AllureScreenshot().make_screenshot(browser)

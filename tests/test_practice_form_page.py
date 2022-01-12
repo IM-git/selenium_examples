@@ -1,17 +1,22 @@
 import os
+import allure
 import requests
 from selenium.webdriver.common.by import By
 from locators import PracticeForm
 from pages import PracticeFormPage
 from src.enums import GlobalErrorMessages, PracticeFormPageError
 from tools import Logger
+from tools.allure_screenshot import AllureScreenshot
 
 
 class TestPracticeForm:
 
     @staticmethod
     # @Logger.logger.catch()
+    @allure.feature("Practice form page(right).")
     def test_practice_form_page_right(browser):
+        """Checking practice form page. Entering all required values.
+         Checking a response."""
         practice_form_page = PracticeFormPage()
         page_response = requests.get(url=PracticeForm.LINK_PRACTICE_FORM_PAGE)
         open_practice_form_page = practice_form_page.open_page(
@@ -76,9 +81,14 @@ class TestPracticeForm:
             f'{PracticeForm.SUBJECTS} ' \
             f'{PracticeFormPageError.WRONG_PRACTICE_FORM_SUBJECT.value}'
 
+        taking_screenshot = AllureScreenshot().make_screenshot(browser)
+
     @staticmethod
     # @Logger.logger.catch()
+    @allure.feature("Practice form page(failed).")
     def test_practice_form_page_failed(browser):
+        """Checking practice form page. Entering not all required values.
+        Test should not pass correct. Checking a response."""
         practice_form_page = PracticeFormPage()
         page_response = requests.get(url=PracticeForm.LINK_PRACTICE_FORM_PAGE)
         open_practice_form_page = practice_form_page.open_page(
@@ -127,3 +137,5 @@ class TestPracticeForm:
             PracticeFormPageError.WRONG_GET_ATTRIBUTE.value
         assert get_subject_text_values == '',\
             PracticeFormPageError.WRONG_SUBJECT_TEXT.value
+
+        taking_screenshot = AllureScreenshot().make_screenshot(browser)

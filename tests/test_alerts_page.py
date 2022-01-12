@@ -1,15 +1,20 @@
 import time
+import allure
 import requests
 from pages import AlertsPage
 from selenium.webdriver.common.by import By
 from locators import Alerts
 from src.enums import GlobalErrorMessages, AlertsError
 from tools import Logger
+from tools.allure_screenshot import AllureScreenshot
 from tools.RandomName import RandomName
 
 
+@allure.feature("Alert page.")
 # @Logger.logger.catch()
 def test_alerts_page(browser):
+    """Checking alerts page. Clicking all alert buttons and
+    expect for correct operation of them"""
     alerts_page = AlertsPage()
     page_response = requests.get(url=Alerts.LINK)
     open_main_page = alerts_page.open_page(browser, Alerts.LINK)
@@ -119,3 +124,5 @@ def test_alerts_page(browser):
     assert get_prompt_result_text_ok ==\
            f'You entered {Alerts.ENTER_NAME_IN_ALERT_PROMPT}', \
         AlertsError.WRONG_CONFIRM_RESULT_TEXT_OK.value
+
+    taking_screenshot = AllureScreenshot().make_screenshot(browser)
