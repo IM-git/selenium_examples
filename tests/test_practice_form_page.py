@@ -1,6 +1,7 @@
 import os
 import allure
 import requests
+from flaky import flaky
 from selenium.webdriver.common.by import By
 from locators import PracticeForm
 from pages import PracticeFormPage
@@ -13,6 +14,7 @@ class TestPracticeForm:
 
     @staticmethod
     # @Logger.logger.catch()
+    @allure.link(url=PracticeForm.LINK_PRACTICE_FORM_PAGE, name='LINK_PRACTICE_FORM_PAGE')
     @allure.feature("Practice form page(right).")
     def test_practice_form_page_right(browser):
         """Checking practice form page. Entering all required values.
@@ -84,7 +86,9 @@ class TestPracticeForm:
         taking_screenshot = AllureScreenshot().make_screenshot(browser)
 
     @staticmethod
+    @flaky
     # @Logger.logger.catch()
+    @allure.link(url=PracticeForm.LINK_PRACTICE_FORM_PAGE, name='LINK_PRACTICE_FORM_PAGE')
     @allure.feature("Practice form page(failed).")
     def test_practice_form_page_failed(browser):
         """Checking practice form page. Entering not all required values.

@@ -9,6 +9,7 @@ from tools.allure_screenshot import AllureScreenshot
 
 
 @allure.feature("Buttons page.")
+@allure.link(url=Buttons.LINK, name='BUTTONS_LINK')
 # @Logger.logger.catch()
 def test_buttons_page(browser):
     """Checking buttons page. Clicking all buttons and

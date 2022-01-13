@@ -11,6 +11,7 @@ from tools.RandomName import RandomName
 
 
 @allure.feature("Alert page.")
+@allure.link(url=Alerts.LINK, name='ALERTS_LINK')
 # @Logger.logger.catch()
 def test_alerts_page(browser):
     """Checking alerts page. Clicking all alert buttons and

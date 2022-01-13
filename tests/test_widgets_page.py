@@ -1,6 +1,7 @@
 import time
 import allure
 import requests
+from flaky import flaky
 from selenium.webdriver.common.by import By
 from pages import WidgetsPage
 from locators import Widgets
@@ -13,6 +14,7 @@ class TestWidgets:
 
     @staticmethod
     # @Logger.logger.catch()
+    @allure.link(url=Widgets.LINK_SLIDER_PAGE, name='LINK_SLIDER_PAGE')
     @allure.feature("Slider.")
     def test_slider(browser):
         """Checking correct operation a slider on the widgets page."""
@@ -40,6 +42,8 @@ class TestWidgets:
 
     @staticmethod
     # @Logger.logger.catch()
+    @allure.link(url=Widgets.LINK_PROGRESS_BAR_PAGE, name='LINK_PROGRESS_BAR_PAGE')
+    @flaky
     @allure.feature("Progress bar.")
     def test_progress_bar(browser):
         """Checking correct operation a progress bar on the widgets page."""

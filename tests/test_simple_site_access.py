@@ -6,6 +6,7 @@ from tools import Logger
 
 
 @allure.feature("Main page.")
+@allure.link(url=Main.LINK, name='MAIN_LINK')
 # @Logger.logger.catch()
 def test_main_page():
     """Checking only page responses: '200'."""
