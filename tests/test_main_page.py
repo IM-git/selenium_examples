@@ -5,12 +5,11 @@ from selenium.webdriver.common.by import By
 from locators import Main
 from src.enums import GlobalErrorMessages
 from tools import Logger
-from tools.allure_screenshot import AllureScreenshot
-
+from tools.allure_screenshot import taking_screenshot
 
 @allure.feature("Main page.")
 @allure.link(url=Main.LINK, name='MAIN_LINK')
-# @Logger.logger.catch()
+@Logger.logger.catch()
 def test_main_page(browser):
     """Checking main page. Open main page.
     Checking the text in the tab header. Checking the image display."""
@@ -26,8 +25,8 @@ def test_main_page(browser):
     assert page_response.status_code == 200, \
         GlobalErrorMessages.WRONG_STATUS_CODE.value
     assert get_title_demoqa == "ToolsQA", \
-        GlobalErrorMessages.WRONG_TITLE_PAGE.value
+        (GlobalErrorMessages.WRONG_TITLE_PAGE.value,
+         taking_screenshot(browser))
     assert check_is_displayed_element_img == True, \
-        GlobalErrorMessages.WRONG_IS_DISPLAYED.value
-
-    taking_screenshot = AllureScreenshot().make_screenshot(browser)
+        (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+         taking_screenshot(browser))

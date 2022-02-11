@@ -7,14 +7,15 @@ from locators import PracticeForm
 from pages import PracticeFormPage
 from src.enums import GlobalErrorMessages, PracticeFormPageError
 from tools import Logger
-from tools.allure_screenshot import AllureScreenshot
+from tools.allure_screenshot import taking_screenshot
 
 
 class TestPracticeForm:
 
     @staticmethod
     # @Logger.logger.catch()
-    @allure.link(url=PracticeForm.LINK_PRACTICE_FORM_PAGE, name='LINK_PRACTICE_FORM_PAGE')
+    @allure.link(url=PracticeForm.LINK_PRACTICE_FORM_PAGE,
+                 name='LINK_PRACTICE_FORM_PAGE')
     @allure.feature("Practice form page(right).")
     def test_practice_form_page_right(browser):
         """Checking practice form page. Entering all required values.
@@ -73,22 +74,25 @@ class TestPracticeForm:
 
         assert page_response.status_code == 200,\
             GlobalErrorMessages.WRONG_STATUS_CODE.value
-        assert check_is_displayed_practice_form_page == True,\
-            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
+        assert check_is_displayed_practice_form_page == True, \
+            (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+             taking_screenshot(browser))
         assert check_is_displayed_modal_body == True, \
-            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY.value
+            (PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY.value,
+             taking_screenshot(browser))
         assert get_attribute == "was-validated", \
-            PracticeFormPageError.WRONG_GET_ATTRIBUTE.value
+            (PracticeFormPageError.WRONG_GET_ATTRIBUTE.value,
+             taking_screenshot(browser))
         assert PracticeForm.SUBJECTS == get_subject_text_values.split('\n'), \
             f'{PracticeForm.SUBJECTS} ' \
             f'{PracticeFormPageError.WRONG_PRACTICE_FORM_SUBJECT.value}'
 
-        taking_screenshot = AllureScreenshot().make_screenshot(browser)
 
     @staticmethod
     @flaky
     # @Logger.logger.catch()
-    @allure.link(url=PracticeForm.LINK_PRACTICE_FORM_PAGE, name='LINK_PRACTICE_FORM_PAGE')
+    @allure.link(url=PracticeForm.LINK_PRACTICE_FORM_PAGE,
+                 name='LINK_PRACTICE_FORM_PAGE')
     @allure.feature("Practice form page(failed).")
     def test_practice_form_page_failed(browser):
         """Checking practice form page. Entering not all required values.
@@ -134,12 +138,14 @@ class TestPracticeForm:
         assert page_response.status_code == 200, \
             GlobalErrorMessages.WRONG_STATUS_CODE.value
         assert check_is_displayed_practice_form_page == True, \
-            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
+            (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+             taking_screenshot(browser))
         assert check_is_displayed_modal_body == False, \
-            PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY.value
-        assert get_attribute == "was-validated",\
-            PracticeFormPageError.WRONG_GET_ATTRIBUTE.value
-        assert get_subject_text_values == '',\
-            PracticeFormPageError.WRONG_SUBJECT_TEXT.value
-
-        taking_screenshot = AllureScreenshot().make_screenshot(browser)
+            (PracticeFormPageError.WRONG_DISPLAYED_MODAL_BODY.value,
+             taking_screenshot(browser))
+        assert get_attribute == "was-validated", \
+            (PracticeFormPageError.WRONG_GET_ATTRIBUTE.value,
+             taking_screenshot(browser))
+        assert get_subject_text_values == '', \
+            (PracticeFormPageError.WRONG_SUBJECT_TEXT.value,
+             taking_screenshot(browser))

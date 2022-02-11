@@ -1,4 +1,4 @@
-from patterns.Singleton import Singleton
+from patterns.singleton import Singleton
 import json
 
 

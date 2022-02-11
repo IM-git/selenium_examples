@@ -5,8 +5,7 @@ from locators import Buttons
 from selenium.webdriver.common.by import By
 from src.enums import GlobalErrorMessages, ButtonsError
 from tools import Logger
-from tools.allure_screenshot import AllureScreenshot
-
+from tools.allure_screenshot import taking_screenshot
 
 @allure.feature("Buttons page.")
 @allure.link(url=Buttons.LINK, name='BUTTONS_LINK')
@@ -46,14 +45,18 @@ def test_buttons_page(browser):
     assert page_response.status_code == 200, \
         GlobalErrorMessages.WRONG_STATUS_CODE.value
     assert get_title_buttons_page == "ToolsQA", \
-        GlobalErrorMessages.WRONG_TITLE_PAGE.value
-    assert check_is_displayed_double_click_button == True,\
-        GlobalErrorMessages.WRONG_IS_DISPLAYED.value
+        (GlobalErrorMessages.WRONG_TITLE_PAGE.value,
+         taking_screenshot(browser))
+    assert check_is_displayed_double_click_button == True, \
+        (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+         taking_screenshot(browser))
     assert get_double_click_result_text == 'You have done a double click', \
-        ButtonsError.WRONG_ANSWER_AFTER_DOUBLE_CLICK.value
+        (ButtonsError.WRONG_ANSWER_AFTER_DOUBLE_CLICK.value,
+         taking_screenshot(browser))
     assert get_right_click_result_text == 'You have done a right click', \
-        ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value
+        (ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value,
+         taking_screenshot(browser))
     assert get_click_result_text == 'You have done a dynamic click', \
-        ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value
+        (ButtonsError.WRONG_ANSWER_AFTER_RIGHT_CLICK.value,
+         taking_screenshot(browser))
 
-    taking_screenshot = AllureScreenshot().make_screenshot(browser)

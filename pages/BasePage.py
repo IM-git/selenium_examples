@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 from elements.BaseElements import BaseElements
 from locators.Base import Base
-from tools import  Logger
+from tools import Logger as Logger
 
 
 class BasePage:

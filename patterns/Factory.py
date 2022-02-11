@@ -26,6 +26,22 @@ class Factory:
         return driver
 
     @staticmethod
+    def chrome_browser_selenoid():
+        driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            options=webdriver.ChromeOptions()
+        )
+        return driver
+
+    @staticmethod
+    def firefox_browser_selenoid():
+        driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            options=webdriver.FirefoxOptions()
+        )
+        return driver
+
+    @staticmethod
     def config_browser(config):
         if 'browser' not in config:
             print('The config file does not contain "browser"')

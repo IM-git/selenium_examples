@@ -1,5 +1,5 @@
 import pytest
-from patterns.Factory import Factory
+from patterns.factory import Factory
 from tools.ReadFile import ReadFile
 
 

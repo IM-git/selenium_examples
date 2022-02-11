@@ -1,13 +1,12 @@
-import time
 import allure
 import requests
-from flaky import flaky
+# from flaky import flaky
 from selenium.webdriver.common.by import By
 from pages import WidgetsPage
 from locators import Widgets
 from src.enums import GlobalErrorMessages, WidgetsPageError
 from tools import Logger
-from tools.allure_screenshot import AllureScreenshot
+from tools.allure_screenshot import taking_screenshot
 
 
 class TestWidgets:
@@ -34,16 +33,18 @@ class TestWidgets:
         assert page_response.status_code == 200,\
             GlobalErrorMessages.WRONG_STATUS_CODE.value
         assert check_is_displayed_slider == True, \
-            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
-        assert do_random_steps == checking_slider_value,\
-            WidgetsPageError.WRONG_DID_RANDOM_STEPS.value
+            (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+             taking_screenshot(browser))
+        assert do_random_steps == checking_slider_value, \
+            (WidgetsPageError.WRONG_DID_RANDOM_STEPS.value,
+             taking_screenshot(browser))
 
-        taking_screenshot = AllureScreenshot().make_screenshot(browser)
 
     @staticmethod
     # @Logger.logger.catch()
-    @allure.link(url=Widgets.LINK_PROGRESS_BAR_PAGE, name='LINK_PROGRESS_BAR_PAGE')
-    @flaky
+    @allure.link(url=Widgets.LINK_PROGRESS_BAR_PAGE,
+                 name='LINK_PROGRESS_BAR_PAGE')
+    # @flaky
     @allure.feature("Progress bar.")
     def test_progress_bar(browser):
         """Checking correct operation a progress bar on the widgets page."""
@@ -67,9 +68,9 @@ class TestWidgets:
 
         assert page_response.status_code == 200,\
             GlobalErrorMessages.WRONG_STATUS_CODE.value
-        assert check_is_displayed_reset_button == True,\
-            GlobalErrorMessages.WRONG_IS_DISPLAYED.value
-        assert wait_while_progress_bar_became in get_value_progress_bar,\
-            WidgetsPageError.WRONG_ENTERED_VALUE_IN_PAGE.value
-
-        taking_screenshot = AllureScreenshot().make_screenshot(browser)
+        assert check_is_displayed_reset_button == True, \
+            (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+             taking_screenshot(browser))
+        assert wait_while_progress_bar_became in get_value_progress_bar, \
+            (WidgetsPageError.WRONG_ENTERED_VALUE_IN_PAGE.value,
+             taking_screenshot(browser))
