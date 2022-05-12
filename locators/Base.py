@@ -1,2 +1,2 @@
 class Base:
-    TIME = 10
+    TIME: int = 10

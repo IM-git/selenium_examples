@@ -1,81 +1,72 @@
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import Keys
+
+import requests
+
 from elements.BaseElements import BaseElements
 from locators.Base import Base
-from tools import Logger as Logger
+from tools import Logger as Log
+from tools.allure_screenshot import taking_screenshot
+from src.enums import GlobalErrorMessages, AlertsError
 
 
 class BasePage:
 
-    def __init__(self):
+    def __init__(self, browser: object = None, url: str = None):
+        self.browser = browser
+        self.__url = url
         self.base_element = BaseElements()
+        self.time = Base.TIME
 
-    def open_page(self, browser, link):
-        Logger.Logger().info(f"Open page: {link}.")
-        browser.get(link)
+    def open_page(self):
+        Log.Logger().info(f"Open page: {self.__url}.")
+        self.browser.get(self.__url)
 
-    def get_title(self, browser):
-        Logger.Logger().info(f"Get title: {browser.title}.")
-        return browser.title
+    def get_title(self):
+        return self.browser.title
 
-    def get_current_url(self, browser):
-        Logger.Logger().info(f"Get current url: {browser.current_url}.")
-        return browser.current_url
+    def get_current_url(self):
+        return self.browser.current_url
 
-    def go_back(self, browser):
-        Logger.Logger().info(f"Go to back.")
-        return browser.back()
+    def get_text(self, locator, element):
+        Log.Logger().info(f"Get text from element: {element}.")
+        return self.base_element.get_text(self.browser, locator, element)
 
-    def refresh_page(self, browser):
-        Logger.Logger().info(f"Refresh page.")
-        return browser.refresh()
+    def enter_text(self, locator, element):
+        Log.Logger().info(f"Enter text from element: {element}.")
+        value = self.base_element.find_element(self.browser, locator, element)
+        value.send_keys()
 
-    def wait_element_to_be_clickable(self, browser, element):
-        Logger.Logger().info(f"Wait element to be clickable(Element: {element}).")
-        return WebDriverWait(browser, Base.TIME).until(
+    def click_element(self, locator, element):
+        Log.Logger().info(f"Click element: {element}.")
+        self.base_element.click(self.browser, locator, element)
+
+    def check_is_displayed(self, locator, element):
+        Log.Logger().info(f"Check is displayed element: {element}.")
+        # self.browser.implicitly_wait(10)
+        value = BaseElements.find_element(
+            self.browser, locator, element).is_displayed()
+        assert value is True,\
+            (GlobalErrorMessages.WRONG_IS_DISPLAYED.value,
+             taking_screenshot(self.browser))
+
+    def get_attribute(self, locator, element, attribute):
+        Log.Logger().info(f"Get attribute from element(Element: {element},"
+                          f"attribute: {attribute}).")
+        return self.base_element.get_to_attribute(
+            self.browser, locator, element, attribute)
+
+    def page_response(self):
+        response = requests.get(self.__url)
+        assert response.status_code == 200,\
+            GlobalErrorMessages.WRONG_STATUS_CODE.value
+
+    def wait_element_to_be_clickable(self, element):
+        Log.Logger().info(f"Wait element to be clickable.")
+        WebDriverWait(self.browser, self.time).until(
             EC.element_to_be_clickable(element))
 
-    def wait_presence_of_element_located(self, browser, element):
-        Logger.Logger().info(f"Wait presence of element located(Element: {element}).")
-        return WebDriverWait(browser, Base.TIME).until(
+    def wait_presence_of_element_located(self, element):
+        Log.Logger().info(f"Wait presence of element located.")
+        WebDriverWait(self.browser, self.time).until(
             EC.presence_of_element_located(element))
-
-    def _implicitly_wait(self, browser, time):
-        Logger.Logger().info(f"Implicitly wait(Time: {time}).")
-        return browser.implicitly_wait(time)
-
-    def get_text(self, browser, locator, element):
-        Logger.Logger().info(f"Get text from element: {element}.")
-        return self.base_element._get_text(
-            self.base_element._find_element(browser, locator, element))
-
-    def enter_text(self, browser, locator, element):
-        Logger.Logger().info(f"Enter text from element: {element}.")
-        value = self.base_element._find_element(
-            browser, locator, element)
-        return value.send_keys()
-
-    def click_element(self, browser, locator, element):
-        Logger.Logger().info(f"Click element: {element}.")
-        return self.base_element._click(
-            self.base_element._find_element(browser, locator, element))
-
-    def check_is_displayed(self, browser, locator, element):
-        Logger.Logger().info(f"Check is displayed element: {element}.")
-        __implicitly_wait_time = 1
-        browser.implicitly_wait(__implicitly_wait_time)
-        try:
-            BaseElements._find_element(browser, locator, element).\
-                is_displayed()
-        except NoSuchElementException:
-            return False
-        return True
-
-    def get_attribute(self, browser, locator, element, attribute):
-        Logger.Logger().info(f"Get attribute from element(Element: {element}, attribute: {attribute}).")
-        elements = self.base_element._find_element(
-            browser, locator, element)
-        return self.base_element._get_to_attribute(elements, attribute)
