@@ -73,12 +73,6 @@ class AlertsPage(BasePage):
             (AlertsError.WRONG_CONFIRM_RESULT_TEXT_CANCEL.value,
              taking_screenshot(self.browser))
 
-    def check_title_alerts_page(self):
-        get_title_alerts_page = self.get_title()
-        assert get_title_alerts_page == "ToolsQA",\
-            (GlobalErrorMessages.WRONG_TITLE_PAGE.value,
-             taking_screenshot(self.browser))
-
     def checks_gotten_alert_text(self):
         alert_text = self.get_alert_text()
         assert alert_text == 'You clicked a button', \

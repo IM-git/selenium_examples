@@ -22,8 +22,11 @@ class BasePage:
         Log.Logger().info(f"Open page: {self.__url}.")
         self.browser.get(self.__url)
 
-    def get_title(self):
-        return self.browser.title
+    def checks_title(self):
+        title = self.browser.title
+        assert title == "ToolsQA",\
+            (GlobalErrorMessages.WRONG_TITLE_PAGE.value,
+             taking_screenshot(self.browser))
 
     def get_current_url(self):
         return self.browser.current_url

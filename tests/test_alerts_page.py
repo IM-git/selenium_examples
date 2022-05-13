@@ -3,7 +3,6 @@ import pytest
 
 from pages import AlertsPage
 from locators import Alerts
-
 from tools import Logger
 from tools.RandomName import RandomName
 
@@ -22,7 +21,7 @@ class TestAlertPage:
 
         alerts_page.page_response()
         alerts_page.open_page()
-        alerts_page.check_title_alerts_page()
+        alerts_page.checks_title()
         alerts_page.wait_while_load_in_alert_page()
         alerts_page.check_is_displayed_alerts_button()
 
