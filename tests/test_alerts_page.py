@@ -11,14 +11,16 @@ NAME = RandomName.random_name(WAY)
 
 
 class TestAlertPage:
+    """
+    Checking alerts page.
+    Clicking all alert buttons and
+    expect for correct operation of them.
+    """
 
     @pytest.fixture(scope="function", autouse=True)
     # @Logger.logger.catch()
     def setup(self, browser):
-        """Checking alerts page. Clicking all alert buttons and
-        expect for correct operation of them"""
         alerts_page = AlertsPage(browser=browser, url=Alerts.LINK)
-
         alerts_page.page_response()
         alerts_page.open_page()
         alerts_page.checks_title()
