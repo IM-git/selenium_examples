@@ -1,9 +1,10 @@
+from selenium.webdriver.common.by import By
+
 from tools.RandomTools import RandomTools
 
-
-ID_HOBBY_SPORTS = '//input[@id="hobbies-checkbox-1"]'
-ID_HOBBY_READING = '//input[@id="hobbies-checkbox-2"]'
-ID_HOBBY_MUSIC = '//input[@id="hobbies-checkbox-3"]'
+ID_HOBBY_SPORTS = (By.XPATH, '//input[@id="hobbies-checkbox-1"]')
+ID_HOBBY_READING = (By.XPATH, '//input[@id="hobbies-checkbox-2"]')
+ID_HOBBY_MUSIC = (By.XPATH, '//input[@id="hobbies-checkbox-3"]')
 
 
 class ChoiceHobbies:

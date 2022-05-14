@@ -1,8 +1,11 @@
+from selenium.webdriver.common.by import By
+
 from tools.RandomTools import RandomTools
 
-ID_GENDER_MALE = '//input[@id="gender-radio-1"]'
-ID_GENDER_FEMALE = '//input[@id="gender-radio-2"]'
-ID_GENDER_OTHER = '//input[@id="gender-radio-3"]'
+ID_GENDER_MALE = (By.XPATH, '//input[@id="gender-radio-1"]')
+ID_GENDER_FEMALE = (By.XPATH, '//input[@id="gender-radio-2"]')
+ID_GENDER_OTHER = (By.XPATH, '//input[@id="gender-radio-3"]')
+
 
 class ChoiceGender:
 
